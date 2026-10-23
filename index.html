@@ -104,6 +104,21 @@ button,a{-webkit-tap-highlight-color:transparent}
 .about-title{font-size:clamp(74px,10.6vw,160px);line-height:.72;margin:0;text-transform:uppercase}
 .about-portrait{height:min(68vh,640px);border-radius:34px;overflow:hidden;box-shadow:0 30px 70px rgba(44,32,22,.16)}
 .about-portrait img{height:100%;object-fit:cover;object-position:center 40%}
+
+.about-avatar3d{position:relative;background:radial-gradient(circle at 50% 34%,rgba(255,255,255,.72),rgba(224,214,201,.56) 40%,rgba(188,177,165,.35) 72%,rgba(149,138,127,.28));isolation:isolate;cursor:crosshair}
+.about-avatar3d::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(135deg,rgba(255,255,255,.52),rgba(255,255,255,.08) 40%,rgba(65,46,30,.08));pointer-events:none}
+.about-avatar3d::after{content:"";position:absolute;inset:1px;z-index:4;border-radius:33px;border:1px solid rgba(255,255,255,.72);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -36px 70px rgba(74,51,32,.08);pointer-events:none}
+#aboutAvatarCanvas{position:absolute;z-index:2;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
+.about-avatar-fallback{position:absolute;z-index:1;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;opacity:1;transition:opacity .55s ease;filter:saturate(.85)}
+.about-avatar3d.ready .about-avatar-fallback{opacity:0}
+.about-avatar-glass{position:absolute;z-index:3;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.18),transparent 28%,transparent 70%,rgba(255,255,255,.10));mix-blend-mode:screen}
+.about-avatar-hint{position:absolute;z-index:5;left:18px;bottom:16px;display:flex;align-items:center;gap:8px;padding:8px 11px;border-radius:999px;background:rgba(255,255,255,.46);border:1px solid rgba(255,255,255,.62);backdrop-filter:blur(14px) saturate(130%);-webkit-backdrop-filter:blur(14px) saturate(130%);color:#403932;font-size:8px;letter-spacing:.12em;text-transform:uppercase;transition:opacity .35s ease,transform .35s ease}
+.about-avatar3d:hover .about-avatar-hint{opacity:.46;transform:translateY(2px)}
+.about-avatar-dot{width:5px;height:5px;border-radius:50%;background:#5e332f;box-shadow:0 0 0 4px rgba(94,51,47,.10)}
+.about-avatar3d.loading::before{animation:avatarPulse 1.5s ease-in-out infinite alternate}
+@keyframes avatarPulse{from{opacity:.55}to{opacity:1}}
+@media(max-width:640px){.about-avatar-hint{display:none}.about-avatar3d{cursor:default}}
+@media(prefers-reduced-motion:reduce){.about-avatar3d::before{animation:none!important}.about-avatar-fallback{transition:none!important}}
 .about-copy{max-width:490px}
 .about-copy p{font-size:clamp(15px,1.3vw,18px);line-height:1.75;margin:0 0 34px;color:#3e3935}
 .about-word{display:inline-block;opacity:.17;transform:translateY(.28em);transition:opacity .6s ease,transform .75s var(--spring)}
@@ -380,7 +395,12 @@ body.archive-ready .archive-headline p{opacity:1;transform:none}
   <section class="about" id="about">
     <div class="about-inner">
       <h2 class="about-title">About</h2>
-      <figure class="about-portrait"><img src="assets/about-profile.jpeg" alt="Portrait of Kiet Anh Nguyen"></figure>
+      <figure class="about-portrait about-avatar3d" id="aboutAvatar3D" aria-label="Interactive 3D avatar of Kiet Anh Nguyen. Move your pointer around the portrait to make the face and eyes follow you.">
+        <canvas id="aboutAvatarCanvas" aria-hidden="true"></canvas>
+        <img class="about-avatar-fallback" src="assets/about-profile.jpeg" alt="Portrait of Kiet Anh Nguyen">
+        <div class="about-avatar-glass" aria-hidden="true"></div>
+        <div class="about-avatar-hint"><span class="about-avatar-dot"></span>Move your cursor</div>
+      </figure>
       <div class="about-copy">
         <p data-word-reveal>I study Multimedia Communication at FPT University. I am drawn to work that begins with listening: understanding people and context first, then deciding whether the story should become writing, film, an event, or a cultural experience.</p>
         <div class="about-meta">
@@ -805,5 +825,136 @@ body.archive-ready .archive-headline p{opacity:1;transform:none}
   addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal()});
 })();
 </script>
+
+<script type="module">
+(async()=>{
+  const wrap=document.getElementById('aboutAvatar3D');
+  const canvas=document.getElementById('aboutAvatarCanvas');
+  if(!wrap||!canvas)return;
+  const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  wrap.classList.add('loading');
+  try{
+    const THREE=await import('https://cdn.jsdelivr.net/npm/three@0.169.0/+esm');
+    const {GLTFLoader}=await import('https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/loaders/GLTFLoader.js/+esm');
+    const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'high-performance'});
+    renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+    renderer.outputColorSpace=THREE.SRGBColorSpace;
+    renderer.toneMapping=THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure=1.08;
+    const scene=new THREE.Scene();
+    const camera=new THREE.PerspectiveCamera(29,1,.01,100);
+    camera.position.set(0,.08,5.75);
+    camera.lookAt(0,.08,0);
+
+    scene.add(new THREE.HemisphereLight(0xfff5e9,0x5b6170,2.35));
+    const key=new THREE.DirectionalLight(0xffead8,4.4);key.position.set(-2.5,3.2,4.5);scene.add(key);
+    const rim=new THREE.DirectionalLight(0x9bb8ff,2.1);rim.position.set(3.2,2.0,-2.0);scene.add(rim);
+    const fill=new THREE.PointLight(0xffffff,1.8,8);fill.position.set(0,-1.5,3);scene.add(fill);
+
+    const loader=new GLTFLoader();
+    const gltf=await loader.loadAsync('assets/kiet-editorial-avatar.glb');
+    const avatar=gltf.scene;
+    avatar.rotation.x=-Math.PI/2;
+    avatar.scale.setScalar(1.68);
+    avatar.position.set(0,-1.45,0);
+    scene.add(avatar);
+    avatar.updateMatrixWorld(true);
+
+    // Re-parent the head assembly to a real pivot so only the face follows the pointer.
+    const headPivot=new THREE.Group();
+    headPivot.name='HeadLookPivot';
+    avatar.add(headPivot);
+    headPivot.position.set(0,0,1.64);
+    const headNames=['head','ear_L','ear_R','nose','hair_mass','hair_fringe_0','hair_fringe_1','hair_fringe_2','hair_fringe_3','glasses_bridge','glass_L','glass_R','temple_L','temple_R'];
+    const headMeshes=[];
+    avatar.traverse(o=>{if(headNames.some(n=>o.name===n||o.name.startsWith(n)))headMeshes.push(o)});
+    avatar.updateMatrixWorld(true);
+    headMeshes.forEach(o=>headPivot.attach(o));
+
+    const eyeWhiteMat=new THREE.MeshStandardMaterial({color:0xf6f1ea,roughness:.55,metalness:0});
+    const irisMat=new THREE.MeshStandardMaterial({color:0x5d3427,roughness:.48});
+    const pupilMat=new THREE.MeshStandardMaterial({color:0x171311,roughness:.38});
+    const eyeGeo=new THREE.SphereGeometry(.027,24,18);
+    const irisGeo=new THREE.SphereGeometry(.0135,22,16);
+    const pupilGeo=new THREE.SphereGeometry(.0065,18,14);
+    const eyeGroups=[];
+    function makeEye(x){
+      const g=new THREE.Group();
+      g.position.set(x,-.091,.025);
+      const white=new THREE.Mesh(eyeGeo,eyeWhiteMat);g.add(white);
+      const iris=new THREE.Mesh(irisGeo,irisMat);iris.position.set(0,-.022,0);g.add(iris);
+      const pupil=new THREE.Mesh(pupilGeo,pupilMat);pupil.position.set(0,-.031,0);g.add(pupil);
+      headPivot.add(g);eyeGroups.push({g,iris,pupil});
+    }
+    makeEye(-.043);makeEye(.043);
+
+    // Soft oval ground shadow, keeps the avatar from floating.
+    const shadowMat=new THREE.MeshBasicMaterial({color:0x493c35,transparent:true,opacity:.12,depthWrite:false});
+    const shadow=new THREE.Mesh(new THREE.CircleGeometry(.62,48),shadowMat);
+    shadow.scale.set(1,.38,1);shadow.rotation.x=-Math.PI/2;shadow.position.set(0,-1.58,-.04);scene.add(shadow);
+
+    const target={x:0,y:0}, smooth={x:0,y:0};
+    const pointerFine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+    const move=e=>{
+      // Track the pointer across the whole viewport while About is visible,
+      // so the avatar can keep eye contact even when the cursor is over the copy.
+      const r=wrap.getBoundingClientRect();
+      const cx=r.left+r.width/2, cy=r.top+r.height*.38;
+      const rangeX=Math.max(220,innerWidth*.34), rangeY=Math.max(180,innerHeight*.34);
+      target.x=Math.max(-1,Math.min(1,(e.clientX-cx)/rangeX));
+      target.y=Math.max(-1,Math.min(1,-(e.clientY-cy)/rangeY));
+    };
+    if(pointerFine&&!reduceMotion){
+      addEventListener('pointermove',move,{passive:true});
+    }
+
+    function resize(){
+      const r=wrap.getBoundingClientRect();
+      const w=Math.max(2,Math.round(r.width)),h=Math.max(2,Math.round(r.height));
+      renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();
+    }
+    new ResizeObserver(resize).observe(wrap);resize();
+
+    const clock=new THREE.Clock();
+    let visible=true;
+    new IntersectionObserver(([entry])=>{visible=entry.isIntersecting},{rootMargin:'150px'}).observe(wrap);
+    function render(){
+      requestAnimationFrame(render);
+      if(!visible)return;
+      const dt=Math.min(.05,clock.getDelta());
+      const ease=1-Math.pow(.001,dt);
+      smooth.x+=((reduceMotion?0:target.x)-smooth.x)*ease;
+      smooth.y+=((reduceMotion?0:target.y)-smooth.y)*ease;
+
+      // Our source mesh is Z-up. Yaw is local Z; pitch is local X.
+      const yaw=-smooth.x*.16;
+      const pitch=smooth.y*.10;
+      headPivot.rotation.z+=(yaw-headPivot.rotation.z)*.085;
+      headPivot.rotation.x+=(pitch-headPivot.rotation.x)*.085;
+
+      eyeGroups.forEach(({iris,pupil})=>{
+        const ex=smooth.x*.0075, ez=smooth.y*.0062;
+        iris.position.x+=(ex-iris.position.x)*.12;
+        iris.position.z+=(ez-iris.position.z)*.12;
+        iris.position.y=-.022;
+        pupil.position.x+=(ex*1.15-pupil.position.x)*.15;
+        pupil.position.z+=(ez*1.15-pupil.position.z)*.15;
+        pupil.position.y=-.031;
+      });
+
+      // Tiny breathing/idle movement gives life without competing with the text.
+      if(!pointerFine&&!reduceMotion) avatar.rotation.z=Math.sin(performance.now()*.00055)*.018;
+      renderer.render(scene,camera);
+    }
+    wrap.classList.remove('loading');wrap.classList.add('ready');
+    render();
+  }catch(err){
+    console.warn('3D About avatar unavailable:',err);
+    wrap.classList.remove('loading');
+    // The original portrait remains visible as a graceful fallback.
+  }
+})();
+</script>
+
 </body>
 </html>
