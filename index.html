@@ -99,18 +99,20 @@ button,a{-webkit-tap-highlight-color:transparent}
 .reel-tile span{position:absolute;left:13px;bottom:12px;padding:7px 10px;border-radius:999px;font-size:8px;letter-spacing:.12em;text-transform:uppercase;background:rgba(8,8,10,.35);border:1px solid rgba(255,255,255,.13);backdrop-filter:blur(12px)}
 
 /* ---------- about ---------- */
-.about{position:relative;background:var(--paper);color:var(--paper-ink);border-radius:52px 52px 0 0;overflow:hidden;padding:120px 0 132px}
-.about-inner{width:min(var(--max),calc(100% - 72px));margin:auto;display:grid;grid-template-columns:1.05fr .75fr 1fr;gap:5vw;align-items:center}
-.about-title{font-size:clamp(74px,10.6vw,160px);line-height:.72;margin:0;text-transform:uppercase}
-.about-portrait{position:relative;height:min(68vh,640px);margin:0;border-radius:34px;overflow:hidden;box-shadow:0 30px 70px rgba(44,32,22,.16);background:#d8d8d8;cursor:crosshair;isolation:isolate}
+.about{position:relative;min-height:100svh;background:var(--paper);color:var(--paper-ink);border-radius:52px 52px 0 0;overflow:hidden;padding:120px 0 132px;display:flex;align-items:center;isolation:isolate;cursor:crosshair}
+.about-inner{position:relative;z-index:4;width:min(var(--max),calc(100% - 72px));min-height:calc(100svh - 252px);margin:auto;display:grid;grid-template-columns:1.05fr 1fr;gap:8vw;align-items:center}
+.about-title{position:relative;z-index:4;font-size:clamp(74px,10.6vw,160px);line-height:.72;margin:0;text-transform:uppercase;text-shadow:0 2px 28px rgba(242,236,228,.46)}
+.about-portrait{position:absolute;z-index:0;inset:0;width:100%;height:100%;margin:0;border-radius:0;overflow:hidden;background:#d8d8d8;box-shadow:none;isolation:isolate}
 .about-portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;user-select:none;-webkit-user-drag:none;pointer-events:none}
 .about-portrait-bw{z-index:1}
-.about-portrait-color{z-index:2;-webkit-mask-image:linear-gradient(#0000,#0000);mask-image:linear-gradient(#0000,#0000);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
-.about-reveal-glow{position:absolute;z-index:3;width:190px;height:190px;border-radius:50%;left:0;top:0;transform:translate(-50%,-50%);pointer-events:none;opacity:0;background:radial-gradient(circle,rgba(255,171,64,.16) 0,rgba(255,171,64,.07) 38%,rgba(255,171,64,0) 72%);mix-blend-mode:screen;filter:blur(2px);transition:opacity .35s ease}
-.about-portrait.is-revealing .about-reveal-glow{opacity:1}
-.about-reveal-hint{position:absolute;z-index:4;left:16px;bottom:16px;padding:8px 11px;border-radius:999px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.42);box-shadow:inset 0 1px 0 rgba(255,255,255,.35);backdrop-filter:blur(12px) saturate(135%);-webkit-backdrop-filter:blur(12px) saturate(135%);font-size:8px;line-height:1;letter-spacing:.12em;text-transform:uppercase;color:#221d19;pointer-events:none;transition:opacity .35s ease,transform .35s var(--spring)}
-.about-portrait.is-revealing .about-reveal-hint{opacity:.42;transform:translateY(3px)}
-.about-copy{max-width:490px}
+.about-portrait-color{display:none}
+.about-color-canvas{position:absolute;z-index:2;inset:0;width:100%;height:100%;pointer-events:none}
+.about::after{content:"";position:absolute;z-index:3;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(242,236,228,.58) 0%,rgba(242,236,228,.12) 34%,rgba(242,236,228,.08) 64%,rgba(242,236,228,.54) 100%),linear-gradient(180deg,rgba(242,236,228,.12),rgba(242,236,228,.04) 58%,rgba(242,236,228,.18))}
+.about-reveal-glow{position:absolute;z-index:3;width:230px;height:230px;border-radius:50%;left:0;top:0;transform:translate(-50%,-50%);pointer-events:none;opacity:0;background:radial-gradient(circle,rgba(255,171,64,.14) 0,rgba(255,171,64,.055) 42%,rgba(255,171,64,0) 74%);mix-blend-mode:screen;filter:blur(2px);transition:opacity .35s ease}
+.about.is-revealing .about-reveal-glow{opacity:1}
+.about-reveal-hint{position:absolute;z-index:5;left:22px;bottom:22px;padding:8px 11px;border-radius:999px;background:rgba(255,255,255,.28);border:1px solid rgba(255,255,255,.46);box-shadow:inset 0 1px 0 rgba(255,255,255,.40);backdrop-filter:blur(12px) saturate(135%);-webkit-backdrop-filter:blur(12px) saturate(135%);font-size:8px;line-height:1;letter-spacing:.12em;text-transform:uppercase;color:#221d19;pointer-events:none;transition:opacity .35s ease,transform .35s var(--spring)}
+.about.is-revealing .about-reveal-hint{opacity:.42;transform:translateY(3px)}
+.about-copy{position:relative;z-index:4;max-width:490px;padding:22px 24px;border-radius:26px;background:rgba(242,236,228,.64);border:1px solid rgba(255,255,255,.34);box-shadow:0 18px 50px rgba(44,32,22,.10);backdrop-filter:blur(18px) saturate(118%);-webkit-backdrop-filter:blur(18px) saturate(118%)}
 .about-copy p{font-size:clamp(15px,1.3vw,18px);line-height:1.75;margin:0 0 34px;color:#3e3935}
 .about-word{display:inline-block;opacity:.17;transform:translateY(.28em);transition:opacity .6s ease,transform .75s var(--spring)}
 .about-word.visible{opacity:1;transform:none}
@@ -233,7 +235,7 @@ button,a{-webkit-tap-highlight-color:transparent}
   .nav{grid-template-columns:1fr auto}.nav-links{display:none}.nav-contact{grid-column:2}
   .hero{padding:88px 18px 22px}.hero-name{top:15vh;font-size:18vw}.hero-photo-wrap{width:min(78vw,600px);height:59vh;bottom:13vh}.hero-statement{font-size:34px;max-width:270px}.hero-top-right{display:none}.hero-identity{max-width:210px}.hero-scroll{display:none}
   .reel{padding:30px 0 48px}.reel-tile{width:300px;height:190px}
-  .about{padding:88px 0 100px;border-radius:34px 34px 0 0}.about-inner{width:calc(100% - 36px);grid-template-columns:1fr 1fr;gap:24px}.about-title{grid-column:1/-1;font-size:22vw}.about-portrait{height:58vh}.about-copy{align-self:center}.about-meta{grid-template-columns:1fr}
+  .about{padding:88px 0 100px;border-radius:34px 34px 0 0}.about-inner{width:calc(100% - 36px);min-height:calc(100svh - 188px);grid-template-columns:1fr 1fr;gap:24px}.about-title{font-size:18vw}.about-copy{align-self:center}.about-meta{grid-template-columns:1fr}
   .work{padding:95px 14px 100px;border-radius:34px 34px 0 0;margin-top:-34px}.work-head{display:block;margin-bottom:50px}.work-head p{margin-top:25px}.project-slot{top:calc(5.5rem + var(--i)*28px);height:85vh}.project-card{height:690px;min-height:0;border-radius:30px}.project-card-inner{padding:20px}.project-visual{grid-template-columns:1fr 1.25fr}.project-top{align-items:flex-start}.project-id{gap:13px}.project-title{font-size:29px}.project-number{font-size:48px}
   .culture-strip{width:calc(100% - 28px)}.culture-strip-grid{grid-template-columns:1fr 1fr}.culture-mini:last-child{grid-column:1/-1}
   .next-inner,.footer-inner{width:calc(100% - 36px)}
@@ -243,7 +245,7 @@ button,a{-webkit-tap-highlight-color:transparent}
   .nav-shell{top:10px}.nav{height:44px;padding-left:14px}.nav-brand{font-size:9px}
   .hero{min-height:100svh;padding-top:68px}.hero-name{top:14vh;font-size:21vw;line-height:.79}.hero-photo-wrap{width:calc(100% - 42px);height:54vh;bottom:18vh}.hero-photo{border-radius:27px}.hero-top .eyebrow{max-width:180px}.hero-bottom{display:block}.hero-identity{font-size:11px;max-width:245px}.hero-statement{display:none}
   .reel-row{overflow-x:auto;scrollbar-width:none}.reel-row::-webkit-scrollbar{display:none}.reel-track{transform:none!important;padding:0 12px}.reel-tile{width:240px;height:155px;border-radius:18px}
-  .about-inner{grid-template-columns:1fr}.about-title{font-size:26vw}.about-portrait{height:64vh}.about-copy p{font-size:15px}.about-meta{grid-template-columns:1fr 1fr}
+  .about{min-height:100svh;padding:84px 0 86px}.about-inner{grid-template-columns:1fr;min-height:calc(100svh - 170px);align-content:space-between;gap:42px}.about-title{font-size:26vw;align-self:start}.about-copy{align-self:end;padding:18px 18px;border-radius:22px;background:rgba(242,236,228,.72)}.about-copy p{font-size:15px}.about-meta{grid-template-columns:1fr 1fr}.about-reveal-hint{left:12px;bottom:12px}
   .work-head h2{font-size:22vw}.work-head p{font-size:12px}.project-stack{padding-bottom:20px;gap:18px}.project-slot{position:relative!important;top:auto!important;height:auto;min-height:0;transform:none!important}.project-card{height:auto;min-height:0;transform:none!important;border-radius:26px}.project-card-inner{display:block;padding:16px}.project-top{margin-bottom:14px}.project-number{font-size:38px}.project-title{font-size:24px}.explore-btn{padding:0 13px;min-height:38px}.project-visual{grid-template-columns:1fr;display:block}.project-left{grid-template-columns:1fr 1fr;grid-template-rows:none;display:grid;margin-bottom:10px}.project-img{height:190px;border-radius:20px}.project-main{height:340px}.project-shade{display:none}
   .culture-strip{padding-top:45px}.culture-strip-head{display:block}.culture-strip-head p{margin-top:12px}.culture-strip-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px}.culture-mini{min-width:78vw;height:320px;scroll-snap-align:start}.culture-mini:last-child{grid-column:auto}
   .next{min-height:78svh}.next-inner{padding:12vh 0 9vh}.next-title{font-size:17vw}.next-copy{font-size:13px;max-width:90%}
@@ -383,15 +385,15 @@ body.archive-ready .archive-headline p{opacity:1;transform:none}
     </div>
   </section>
 
-  <section class="about" id="about">
+  <section class="about" id="about" aria-label="About Kiet Anh Nguyen. Move across this section to reveal color.">
+    <figure class="about-portrait" aria-hidden="true">
+      <img class="about-portrait-bw" id="aboutPortraitBW" src="assets/about-bw.png" alt="">
+      <img class="about-portrait-color" id="aboutPortraitColor" src="assets/about-color.jpeg" alt="">
+      <span class="about-reveal-glow" id="aboutRevealGlow" aria-hidden="true"></span>
+    </figure>
+    <span class="about-reveal-hint" aria-hidden="true">Move to reveal color</span>
     <div class="about-inner">
       <h2 class="about-title">About</h2>
-      <figure class="about-portrait" id="aboutReveal" aria-label="Portrait of Kiet Anh Nguyen. Move across the image to reveal color.">
-        <img class="about-portrait-bw" id="aboutPortraitBW" src="assets/about-bw.png" alt="Portrait of Kiet Anh Nguyen in black and white">
-        <img class="about-portrait-color" id="aboutPortraitColor" src="assets/about-color.jpeg" alt="" aria-hidden="true">
-        <span class="about-reveal-glow" id="aboutRevealGlow" aria-hidden="true"></span>
-        <span class="about-reveal-hint" aria-hidden="true">Move to reveal color</span>
-      </figure>
       <div class="about-copy">
         <p data-word-reveal>I study Multimedia Communication at FPT University. I am drawn to work that begins with listening: understanding people and context first, then deciding whether the story should become writing, film, an event, or a cultural experience.</p>
         <div class="about-meta">
@@ -818,58 +820,62 @@ body.archive-ready .archive-headline p{opacity:1;transform:none}
 </script>
 <script>
 (() => {
-  // Orbit-style organic morph reveal, ported from the user's supplied Orbit reference.
-  const stage = document.getElementById('aboutReveal');
-  const bw = document.getElementById('aboutPortraitBW');
+  // Full-section Orbit-style reveal.
+  // The B/W photo stays as the About background; this canvas paints only the
+  // color portions under the organic cursor trail, avoiding full-screen dataURL masks.
+  const stage = document.getElementById('about');
+  const portrait = stage && stage.querySelector('.about-portrait');
   const color = document.getElementById('aboutPortraitColor');
   const glow = document.getElementById('aboutRevealGlow');
-  if (!stage || !bw || !color) return;
+  if (!stage || !portrait || !color) return;
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  const TRAIL_MAX_POINTS = 60;
-  const TRAIL_HEAD_R = 140;
-  const TRAIL_NOISE_AMP = 44;
+  const TRAIL_MAX_POINTS = 64;
+  const TRAIL_HEAD_R = 175;
+  const TRAIL_NOISE_AMP = 42;
   const TRAIL_BLOB_PTS = 24;
-  const TRAIL_FADE_SPEED = 0.92;
-  const TRAIL_SAMPLE_DIST = 8;
+  const TRAIL_FADE_SPEED = 0.925;
+  const TRAIL_SAMPLE_DIST = 9;
 
-  const bgCanvas = document.createElement('canvas');
-  const topCanvas = document.createElement('canvas');
-  const bgCtx = bgCanvas.getContext('2d');
-  const topCtx = topCanvas.getContext('2d');
+  const revealCanvas = document.createElement('canvas');
+  revealCanvas.className = 'about-color-canvas';
+  revealCanvas.setAttribute('aria-hidden', 'true');
+  portrait.appendChild(revealCanvas);
+
+  const revealCtx = revealCanvas.getContext('2d');
+  const maskCanvas = document.createElement('canvas');
+  const maskCtx = maskCanvas.getContext('2d');
 
   let canvasW = 0, canvasH = 0, rect = null;
   let hovering = false, headRadius = 0, time = 0;
   let points = [], lastX = -9999, lastY = -9999;
   let mousePos = {x:0,y:0};
-  let headSeed = Math.random()*100, wasActive = false;
+  const headSeed = Math.random()*100;
 
   function resizeCanvases(){
     rect = stage.getBoundingClientRect();
     if(rect.width<=0 || rect.height<=0) return;
-    canvasW = Math.round(rect.width); canvasH = Math.round(rect.height);
-    if(bgCanvas.width!==canvasW || bgCanvas.height!==canvasH){
-      bgCanvas.width = topCanvas.width = canvasW;
-      bgCanvas.height = topCanvas.height = canvasH;
+    // Cap pixel density at CSS pixels: the effect remains crisp enough while
+    // avoiding huge per-frame canvases on Retina displays.
+    canvasW = Math.max(1, Math.round(rect.width));
+    canvasH = Math.max(1, Math.round(rect.height));
+    if(revealCanvas.width!==canvasW || revealCanvas.height!==canvasH){
+      revealCanvas.width = maskCanvas.width = canvasW;
+      revealCanvas.height = maskCanvas.height = canvasH;
     }
   }
-  resizeCanvases();
-  addEventListener('resize', resizeCanvases, {passive:true});
 
   function updateMousePos(clientX,clientY){
     rect = stage.getBoundingClientRect();
     if(!rect.width || !rect.height) return;
     const scaleX = canvasW/rect.width, scaleY = canvasH/rect.height;
-    mousePos.x=(clientX-rect.left)*scaleX; mousePos.y=(clientY-rect.top)*scaleY;
-    if(glow){ glow.style.left=(clientX-rect.left)+'px'; glow.style.top=(clientY-rect.top)+'px'; }
+    mousePos.x=(clientX-rect.left)*scaleX;
+    mousePos.y=(clientY-rect.top)*scaleY;
+    if(glow){
+      glow.style.left=(clientX-rect.left)+'px';
+      glow.style.top=(clientY-rect.top)+'px';
+    }
   }
-
-  stage.addEventListener('pointerenter',e=>{hovering=true;stage.classList.add('is-revealing');updateMousePos(e.clientX,e.clientY)});
-  stage.addEventListener('pointermove',e=>{hovering=true;stage.classList.add('is-revealing');updateMousePos(e.clientX,e.clientY)});
-  stage.addEventListener('pointerleave',()=>{hovering=false;stage.classList.remove('is-revealing')});
-  stage.addEventListener('touchstart',e=>{const t=e.touches&&e.touches[0];if(!t)return;hovering=true;stage.classList.add('is-revealing');updateMousePos(t.clientX,t.clientY)},{passive:true});
-  stage.addEventListener('touchmove',e=>{const t=e.touches&&e.touches[0];if(!t)return;hovering=true;updateMousePos(t.clientX,t.clientY)},{passive:true});
-  stage.addEventListener('touchend',()=>{hovering=false;stage.classList.remove('is-revealing')},{passive:true});
 
   function drawMorphBlob(ctx,cx,cy,r,t,seed){
     if(r<2)return;
@@ -890,13 +896,41 @@ body.archive-ready .archive-headline p{opacity:1;transform:none}
       const curr=pts[j], next=pts[(j+1)%pts.length];
       ctx.quadraticCurveTo(curr.x,curr.y,(curr.x+next.x)/2,(curr.y+next.y)/2);
     }
-    ctx.closePath(); ctx.fill();
+    ctx.closePath();
+    ctx.fill();
   }
+
+  function drawImageCover(ctx,img,w,h,posX=.5,posY=.4){
+    const iw=img.naturalWidth||1, ih=img.naturalHeight||1;
+    const scale=Math.max(w/iw,h/ih);
+    const dw=iw*scale, dh=ih*scale;
+    const dx=(w-dw)*posX, dy=(h-dh)*posY;
+    ctx.drawImage(img,dx,dy,dw,dh);
+  }
+
+  function setActive(on){
+    hovering=on;
+    stage.classList.toggle('is-revealing',on);
+  }
+
+  stage.addEventListener('pointerenter',e=>{setActive(true);updateMousePos(e.clientX,e.clientY)});
+  stage.addEventListener('pointermove',e=>{setActive(true);updateMousePos(e.clientX,e.clientY)});
+  stage.addEventListener('pointerleave',()=>setActive(false));
+  stage.addEventListener('touchstart',e=>{
+    const t=e.touches&&e.touches[0]; if(!t)return;
+    setActive(true); updateMousePos(t.clientX,t.clientY);
+  },{passive:true});
+  stage.addEventListener('touchmove',e=>{
+    const t=e.touches&&e.touches[0]; if(!t)return;
+    setActive(true); updateMousePos(t.clientX,t.clientY);
+  },{passive:true});
+  stage.addEventListener('touchend',()=>setActive(false),{passive:true});
 
   function tick(){
     requestAnimationFrame(tick);
     if(canvasW<=0||canvasH<=0)resizeCanvases();
-    const responsiveR=Math.min(TRAIL_HEAD_R,Math.max(86,canvasW*.34));
+
+    const responsiveR=Math.min(TRAIL_HEAD_R,Math.max(100,Math.min(canvasW,canvasH)*.18));
     const targetR=hovering?responsiveR:0;
     headRadius+=(targetR-headRadius)*(hovering?.14:.04);
 
@@ -908,39 +942,47 @@ body.archive-ready .archive-headline p{opacity:1;transform:none}
         lastX=mousePos.x;lastY=mousePos.y;
       }
     }
+
     for(let i=points.length-1;i>=0;i--){
-      points[i].alpha*=TRAIL_FADE_SPEED; points[i].r*=.995;
-      if(points[i].alpha<.01)points.splice(i,1);
+      points[i].alpha*=TRAIL_FADE_SPEED;
+      points[i].r*=.996;
+      if(points[i].alpha<.012)points.splice(i,1);
     }
     time+=.016;
 
+    revealCtx.clearRect(0,0,canvasW,canvasH);
     const active=hovering||headRadius>.5||points.length>0;
-    if(!active){
-      if(wasActive){
-        bw.style.webkitMaskImage='none';bw.style.maskImage='none';
-        color.style.webkitMaskImage='linear-gradient(#0000,#0000)';color.style.maskImage='linear-gradient(#0000,#0000)';
-        wasActive=false;
-      }
-      return;
+    if(!active || !color.complete || !color.naturalWidth) return;
+
+    maskCtx.clearRect(0,0,canvasW,canvasH);
+    maskCtx.globalCompositeOperation='source-over';
+
+    // Draw older trail first, then the live head. "lighter" preserves a union-like
+    // alpha build-up without cutting holes where blobs overlap.
+    maskCtx.globalCompositeOperation='lighter';
+    for(const p of points){
+      maskCtx.fillStyle=`rgba(255,255,255,${Math.min(.72,p.alpha*.72)})`;
+      drawMorphBlob(maskCtx,p.x,p.y,p.r,time,p.seed);
     }
-    wasActive=true;
+    if(headRadius>2){
+      maskCtx.fillStyle='rgba(255,255,255,1)';
+      drawMorphBlob(maskCtx,mousePos.x,mousePos.y,headRadius,time,headSeed);
+    }
 
-    bgCtx.clearRect(0,0,canvasW,canvasH); bgCtx.globalCompositeOperation='source-over';
-    bgCtx.fillStyle='#fff'; bgCtx.fillRect(0,0,canvasW,canvasH); bgCtx.globalCompositeOperation='destination-out';
-    for(const p of points){bgCtx.fillStyle=`rgba(0,0,0,${p.alpha})`;drawMorphBlob(bgCtx,p.x,p.y,p.r,time,p.seed)}
-    if(headRadius>2){bgCtx.fillStyle='#000';drawMorphBlob(bgCtx,mousePos.x,mousePos.y,headRadius,time,headSeed)}
-
-    topCtx.clearRect(0,0,canvasW,canvasH); topCtx.globalCompositeOperation='source-over';
-    for(const p of points){topCtx.fillStyle=`rgba(255,255,255,${p.alpha})`;drawMorphBlob(topCtx,p.x,p.y,p.r,time,p.seed)}
-    if(headRadius>2){topCtx.fillStyle='#fff';drawMorphBlob(topCtx,mousePos.x,mousePos.y,headRadius,time,headSeed)}
-
-    const bgUrl=`url(${bgCanvas.toDataURL()})`, topUrl=`url(${topCanvas.toDataURL()})`;
-    bw.style.webkitMaskImage=bgUrl; bw.style.maskImage=bgUrl;
-    bw.style.webkitMaskSize=bw.style.maskSize='100% 100%'; bw.style.webkitMaskRepeat=bw.style.maskRepeat='no-repeat';
-    color.style.webkitMaskImage=topUrl; color.style.maskImage=topUrl;
-    color.style.webkitMaskSize=color.style.maskSize='100% 100%'; color.style.webkitMaskRepeat=color.style.maskRepeat='no-repeat';
+    revealCtx.globalCompositeOperation='source-over';
+    drawImageCover(revealCtx,color,canvasW,canvasH,.5,.4);
+    revealCtx.globalCompositeOperation='destination-in';
+    revealCtx.drawImage(maskCanvas,0,0);
+    revealCtx.globalCompositeOperation='source-over';
   }
-  requestAnimationFrame(tick);
+
+  resizeCanvases();
+  addEventListener('resize',resizeCanvases,{passive:true});
+  if('ResizeObserver' in window){
+    new ResizeObserver(resizeCanvases).observe(stage);
+  }
+  if(color.complete) requestAnimationFrame(tick);
+  else color.addEventListener('load',()=>requestAnimationFrame(tick),{once:true});
 })();
 </script>
 
