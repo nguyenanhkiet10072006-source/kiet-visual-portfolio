@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090a0b">
-<title>Kiet Anh Nguyen — Portfolio V57 · A World Through Connection</title>
+<title>Kiet Anh Nguyen — Portfolio V58 · Motion Restored + Liquid Glass</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -44,9 +44,9 @@ button,a{-webkit-tap-highlight-color:transparent}
 
 /* ---------- liquid glass ---------- */
 .glass{
-  background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.035));
-  border:1px solid rgba(255,255,255,.22);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 14px 38px rgba(0,0,0,.16);
+  background:linear-gradient(135deg,rgba(255,255,255,.115),rgba(255,255,255,.025));
+  border:1px solid rgba(255,255,255,.24);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -1px 0 rgba(255,255,255,.04),0 14px 38px rgba(0,0,0,.16);
   backdrop-filter:blur(24px) saturate(155%);
   -webkit-backdrop-filter:blur(24px) saturate(155%);
 }
@@ -114,33 +114,32 @@ button,a{-webkit-tap-highlight-color:transparent}
 
 /* ---------- work ---------- */
 .work{position:relative;background:#08090b;padding:130px 24px 130px;border-radius:52px 52px 0 0;margin-top:-52px;z-index:4;overflow:hidden;isolation:isolate}
-.work::before{content:"";position:absolute;inset:0;z-index:-2;background:
-  linear-gradient(180deg,rgba(8,9,11,.88) 0%,rgba(8,9,11,.60) 28%,rgba(8,9,11,.66) 72%,rgba(8,9,11,.93) 100%),
-  radial-gradient(circle at 12% 28%,rgba(118,82,91,.30),transparent 34%),
-  radial-gradient(circle at 86% 46%,rgba(71,103,84,.25),transparent 32%),
-  url('assets/cham-2.jpg') center 42%/cover no-repeat;
-  filter:saturate(.72) brightness(.58);transform:scale(1.04)}
-.work::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,.035),transparent 26%,transparent 74%,rgba(255,255,255,.025));mix-blend-mode:screen}
+.work::before{content:"";position:absolute;inset:-8%;z-index:-2;pointer-events:none;background:
+  radial-gradient(circle at 18% 20%,rgba(118,63,82,.34),transparent 28%),
+  radial-gradient(circle at 82% 42%,rgba(58,101,80,.28),transparent 29%),
+  radial-gradient(circle at 48% 82%,rgba(224,204,184,.12),transparent 26%),
+  linear-gradient(180deg,#0a0b0d 0%,#08090b 100%);filter:saturate(.9)}
+.work::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(110deg,rgba(255,255,255,.035),transparent 26%,transparent 72%,rgba(255,255,255,.025));}
 .work-head{width:min(var(--max),calc(100% - 16px));margin:0 auto 76px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
 .work-head h2{margin:0;font-size:clamp(70px,11vw,170px);line-height:.73;text-transform:uppercase;letter-spacing:-.075em;color:#ece4dc}
 .work-head p{max-width:420px;margin:0 0 10px;color:#96928d;font-size:13px;line-height:1.65}
 .project-stack{width:min(1180px,100%);margin:auto;position:relative;padding-bottom:8vh}
-.project-card{position:sticky;top:calc(74px + var(--i)*24px);height:min(76vh,720px);min-height:570px;margin-bottom:11vh;border-radius:42px;overflow:hidden;border:1px solid rgba(255,255,255,.23);background:linear-gradient(145deg,rgba(255,255,255,.10),rgba(255,255,255,.025));box-shadow:inset 0 1px 0 rgba(255,255,255,.26),inset 0 -1px 0 rgba(255,255,255,.05),0 34px 90px rgba(0,0,0,.34);backdrop-filter:blur(28px) saturate(155%);-webkit-backdrop-filter:blur(28px) saturate(155%);transform-origin:center top;will-change:transform}
-.project-card[data-theme="story"]{background:linear-gradient(145deg,rgba(32,18,24,.42),rgba(18,15,18,.22))}
-.project-card[data-theme="community"]{background:linear-gradient(145deg,rgba(21,49,34,.42),rgba(13,28,20,.20))}
-.project-card[data-theme="culture"]{background:linear-gradient(145deg,rgba(79,31,43,.44),rgba(45,20,28,.20))}
+.project-card{position:sticky;top:calc(74px + var(--i)*24px);height:min(76vh,720px);min-height:570px;margin-bottom:11vh;border-radius:42px;overflow:hidden;border:1px solid rgba(255,255,255,.25);background:linear-gradient(145deg,rgba(255,255,255,.095),rgba(255,255,255,.018));box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 0 rgba(255,255,255,.04),0 34px 90px rgba(0,0,0,.42);backdrop-filter:blur(26px) saturate(160%);-webkit-backdrop-filter:blur(26px) saturate(160%);transform-origin:center top;will-change:transform}
+.project-card[data-theme="story"]{background:linear-gradient(145deg,rgba(72,38,50,.22),rgba(255,255,255,.025))}
+.project-card[data-theme="community"]{background:linear-gradient(145deg,rgba(36,83,58,.20),rgba(255,255,255,.022))}
+.project-card[data-theme="culture"]{background:linear-gradient(145deg,rgba(113,42,61,.22),rgba(255,255,255,.022))}
 
-.project-card::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(128deg,rgba(255,255,255,.22) 0%,rgba(255,255,255,.08) 10%,rgba(255,255,255,0) 32%,rgba(255,255,255,.025) 66%,rgba(255,255,255,.12) 100%);opacity:.92;mix-blend-mode:screen}
-.project-card::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 16% 7%,rgba(255,255,255,.22),transparent 26%),radial-gradient(circle at 86% 2%,rgba(255,255,255,.12),transparent 23%),linear-gradient(180deg,rgba(255,255,255,.035),transparent 22%)}
+.project-card::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(128deg,rgba(255,255,255,.24) 0%,rgba(255,255,255,.07) 11%,rgba(255,255,255,0) 34%,rgba(255,255,255,.025) 70%,rgba(255,255,255,.13) 100%);opacity:.78;mix-blend-mode:screen}
+.project-card::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 16% 8%,rgba(255,255,255,.22),transparent 25%),radial-gradient(circle at 85% 0%,rgba(255,255,255,.10),transparent 22%)}
 .project-shade{position:absolute;inset:0;background:#050506;opacity:0;pointer-events:none;z-index:9}
-.project-card-inner{height:100%;padding:28px;display:grid;grid-template-rows:auto 1fr;gap:20px}
-.project-top{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:22px;padding:14px 16px;border-radius:24px;background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.035));border:1px solid rgba(255,255,255,.20);box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 12px 34px rgba(0,0,0,.15);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%)}
+.project-card-inner{position:relative;z-index:3;height:100%;padding:28px;display:grid;grid-template-rows:auto 1fr;gap:20px}
+.project-top{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:22px;padding:14px 16px;border-radius:24px;background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.028));border:1px solid rgba(255,255,255,.21);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 10px 30px rgba(0,0,0,.16);backdrop-filter:blur(22px) saturate(155%);-webkit-backdrop-filter:blur(22px) saturate(155%)}
 .project-id{display:flex;align-items:baseline;gap:22px;min-width:0}
 .project-number{font-size:clamp(45px,5vw,72px);font-weight:700;letter-spacing:-.06em;line-height:.8;color:#f1eae4}
 .project-label{min-width:0}
 .project-label small{display:block;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:#aaa29b;margin-bottom:5px}
 .project-title{font-size:clamp(27px,3vw,43px);line-height:.9;margin:0;color:#fff;white-space:normal}
-.explore-btn{border:1px solid rgba(255,255,255,.20);background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.04));box-shadow:inset 0 1px 0 rgba(255,255,255,.22);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%)}
+.explore-btn{border:1px solid rgba(255,255,255,.22);background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.035));box-shadow:inset 0 1px 0 rgba(255,255,255,.24);backdrop-filter:blur(18px) saturate(155%);-webkit-backdrop-filter:blur(18px) saturate(155%)}
 .project-visual{min-height:0;display:grid;grid-template-columns:4fr 6fr;gap:14px}
 .project-left{display:grid;grid-template-rows:.72fr 1.28fr;gap:14px;min-height:0}
 .project-img{position:relative;border-radius:30px;overflow:hidden;background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.11);box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 16px 40px rgba(0,0,0,.20);backdrop-filter:blur(12px) saturate(120%);-webkit-backdrop-filter:blur(12px) saturate(120%);min-height:0}
@@ -155,10 +154,10 @@ button,a{-webkit-tap-highlight-color:transparent}
 .culture-strip-head h3{margin:0;font-family:"Cormorant Garamond",serif;font-size:clamp(32px,4vw,58px);font-weight:500;letter-spacing:-.04em}
 .culture-strip-head p{margin:0;max-width:420px;color:#97928c;font-size:12px;line-height:1.6}
 .culture-strip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.culture-mini{position:relative;height:320px;border-radius:28px;overflow:hidden;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.20),0 18px 40px rgba(0,0,0,.18);backdrop-filter:blur(18px) saturate(145%);-webkit-backdrop-filter:blur(18px) saturate(145%)}
+.culture-mini{position:relative;height:320px;border-radius:28px;overflow:hidden;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.20),0 18px 40px rgba(0,0,0,.20);backdrop-filter:blur(16px) saturate(145%);-webkit-backdrop-filter:blur(16px) saturate(145%)}
 .culture-mini img{height:100%;object-fit:cover;transition:transform .75s var(--spring)}
 .culture-mini:hover img{transform:scale(1.045)}
-.culture-mini figcaption{position:absolute;inset:auto 10px 10px 10px;padding:22px 16px 14px;border-radius:18px;background:linear-gradient(145deg,rgba(12,12,14,.26),rgba(255,255,255,.055));border:1px solid rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 10px 28px rgba(0,0,0,.18);backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.culture-mini figcaption{position:absolute;inset:auto 10px 10px 10px;padding:22px 16px 14px;border-radius:18px;background:linear-gradient(145deg,rgba(9,9,11,.24),rgba(255,255,255,.055));border:1px solid rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 10px 28px rgba(0,0,0,.20);backdrop-filter:blur(22px) saturate(155%);-webkit-backdrop-filter:blur(22px) saturate(155%);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
 .culture-mini figcaption span{display:block;margin-top:5px;color:#b9b4ad;font-size:8px}
 
 /* ---------- next ---------- */
@@ -167,7 +166,7 @@ button,a{-webkit-tap-highlight-color:transparent}
 .next::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,8,10,.93),rgba(7,8,10,.55) 55%,rgba(7,8,10,.15)),linear-gradient(180deg,rgba(0,0,0,.04),#090a0b 100%)}
 .next-inner{position:relative;z-index:2;width:min(var(--max),calc(100% - 72px));margin:auto;padding:15vh 0 11vh}
 .next-title{font-size:clamp(64px,8.5vw,128px);line-height:.8;margin:0 0 28px;max-width:900px}
-.next-copy{max-width:590px;font-size:15px;line-height:1.72;color:#d0ccc7;margin:0}
+.next-copy{max-width:590px;font-size:15px;line-height:1.72;color:#e2ddd7;margin:0;padding:20px 22px;border-radius:22px;background:linear-gradient(135deg,rgba(255,255,255,.09),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.18);backdrop-filter:blur(18px) saturate(145%);-webkit-backdrop-filter:blur(18px) saturate(145%)}
 
 /* ---------- footer ---------- */
 .footer{background:#050506;padding:100px 0 34px}
@@ -217,9 +216,9 @@ button,a{-webkit-tap-highlight-color:transparent}
 .modal-subproject h4{font-family:"Cormorant Garamond",serif;font-size:clamp(38px,4.5vw,64px);font-weight:500;letter-spacing:-.04em;line-height:.9;margin:0 0 16px}
 .modal-subproject .subcopy{max-width:670px;color:#b8b3ad;font-size:14px;line-height:1.7}
 
-/* ---------- V56 refinements ---------- */
+/* ---------- V58 motion-preserving liquid glass ---------- */
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
-  .project-card,.project-top,.culture-mini,.culture-mini figcaption{background:rgba(30,30,34,.82)}
+  .project-card,.project-top,.project-img,.culture-mini,.culture-mini figcaption,.next-copy{background:rgba(24,24,28,.84)}
 }
 
 /* ---------- responsive ---------- */
