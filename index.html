@@ -113,18 +113,18 @@ button,a{-webkit-tap-highlight-color:transparent}
 .about-meta span{font-size:11px;line-height:1.4}
 
 /* ---------- work ---------- */
-.work{position:relative;background:#08090b;padding:130px 24px 130px;border-radius:52px 52px 0 0;margin-top:-52px;z-index:4;overflow:hidden;isolation:isolate}
-.work::before{content:"";position:absolute;inset:-8%;z-index:-2;pointer-events:none;background:
+.work{position:relative;background:#08090b;padding:130px 24px 130px;border-radius:52px 52px 0 0;margin-top:-52px;z-index:4;overflow:visible;isolation:isolate}
+.work::before{content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;border-radius:52px 52px 0 0;background:
   radial-gradient(circle at 18% 20%,rgba(118,63,82,.34),transparent 28%),
   radial-gradient(circle at 82% 42%,rgba(58,101,80,.28),transparent 29%),
   radial-gradient(circle at 48% 82%,rgba(224,204,184,.12),transparent 26%),
   linear-gradient(180deg,#0a0b0d 0%,#08090b 100%);filter:saturate(.9)}
-.work::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(110deg,rgba(255,255,255,.035),transparent 26%,transparent 72%,rgba(255,255,255,.025));}
+.work::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:52px 52px 0 0;background:linear-gradient(110deg,rgba(255,255,255,.035),transparent 26%,transparent 72%,rgba(255,255,255,.025));}
 .work-head{width:min(var(--max),calc(100% - 16px));margin:0 auto 76px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
 .work-head h2{margin:0;font-size:clamp(70px,11vw,170px);line-height:.73;text-transform:uppercase;letter-spacing:-.075em;color:#ece4dc}
 .work-head p{max-width:420px;margin:0 0 10px;color:#96928d;font-size:13px;line-height:1.65}
-.project-stack{width:min(1152px,100%);margin:auto;position:relative;display:flex;flex-direction:column;gap:40px;padding-bottom:128px}
-.project-slot{height:85vh;display:flex;align-items:flex-start;justify-content:center;position:sticky;top:calc(5.5rem + var(--i)*28px);z-index:calc(20 + var(--i));transform-origin:center top}
+.project-stack{width:min(1152px,100%);margin:auto;position:relative;display:flex;flex-direction:column;gap:0;padding-bottom:128px}
+.project-slot{height:92vh;display:flex;align-items:flex-start;justify-content:center;position:sticky;top:calc(5.5rem + var(--i)*28px);z-index:calc(20 + var(--i));transform-origin:center top;margin-bottom:40px}
 .project-card{position:relative;width:100%;height:min(82vh,760px);min-height:610px;border-radius:42px;overflow:hidden;border:2px solid rgba(226,235,242,.72);background:linear-gradient(145deg,rgba(255,255,255,.095),rgba(255,255,255,.018));box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 0 rgba(255,255,255,.04),0 34px 90px rgba(0,0,0,.58);backdrop-filter:blur(26px) saturate(160%);-webkit-backdrop-filter:blur(26px) saturate(160%);transform-origin:center top;will-change:transform,filter;transition:box-shadow .25s ease,filter .2s linear,border-color .2s linear}
 .project-card[data-theme="story"]{background:linear-gradient(145deg,rgba(72,38,50,.22),rgba(255,255,255,.025))}
 .project-card[data-theme="community"]{background:linear-gradient(145deg,rgba(36,83,58,.20),rgba(255,255,255,.022))}
@@ -738,7 +738,7 @@ body.archive-ready .archive-headline p{opacity:1;transform:none}
     else new IntersectionObserver(([entry],obs)=>{if(entry.isIntersecting){p.querySelectorAll('.about-word').forEach(w=>w.classList.add('visible'));obs.disconnect();}}, {threshold:.38}).observe(p);
   });
 
-  // V61 exact Jack-style sticky stack.
+  // V62 sticky stack: ancestor overflow bug fixed; sticky slots now attach to viewport.
   // The stack itself is CSS sticky. JS only reproduces Framer Motion's subtle
   // per-card scale: progress from the card's natural document start to its end.
   const slots = [...document.querySelectorAll('[data-stack-slot]')];
