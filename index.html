@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090a0b">
-<title>Kiet Anh Nguyen — Portfolio V58 · Motion Restored + Liquid Glass</title>
+<title>Kiet Anh Nguyen — Portfolio V64 · A World Through Connection</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -102,23 +102,14 @@ button,a{-webkit-tap-highlight-color:transparent}
 .about{position:relative;background:var(--paper);color:var(--paper-ink);border-radius:52px 52px 0 0;overflow:hidden;padding:120px 0 132px}
 .about-inner{width:min(var(--max),calc(100% - 72px));margin:auto;display:grid;grid-template-columns:1.05fr .75fr 1fr;gap:5vw;align-items:center}
 .about-title{font-size:clamp(74px,10.6vw,160px);line-height:.72;margin:0;text-transform:uppercase}
-.about-portrait{height:min(68vh,640px);border-radius:34px;overflow:hidden;box-shadow:0 30px 70px rgba(44,32,22,.16)}
-.about-portrait img{height:100%;object-fit:cover;object-position:center 40%}
-
-.about-avatar3d{position:relative;background:radial-gradient(circle at 50% 34%,rgba(255,255,255,.72),rgba(224,214,201,.56) 40%,rgba(188,177,165,.35) 72%,rgba(149,138,127,.28));isolation:isolate;cursor:crosshair}
-.about-avatar3d::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(135deg,rgba(255,255,255,.52),rgba(255,255,255,.08) 40%,rgba(65,46,30,.08));pointer-events:none}
-.about-avatar3d::after{content:"";position:absolute;inset:1px;z-index:4;border-radius:33px;border:1px solid rgba(255,255,255,.72);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -36px 70px rgba(74,51,32,.08);pointer-events:none}
-#aboutAvatarCanvas{position:absolute;z-index:2;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
-.about-avatar-fallback{position:absolute;z-index:1;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;opacity:1;transition:opacity .55s ease;filter:saturate(.85)}
-.about-avatar3d.ready .about-avatar-fallback{opacity:0}
-.about-avatar-glass{position:absolute;z-index:3;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.18),transparent 28%,transparent 70%,rgba(255,255,255,.10));mix-blend-mode:screen}
-.about-avatar-hint{position:absolute;z-index:5;left:18px;bottom:16px;display:flex;align-items:center;gap:8px;padding:8px 11px;border-radius:999px;background:rgba(255,255,255,.46);border:1px solid rgba(255,255,255,.62);backdrop-filter:blur(14px) saturate(130%);-webkit-backdrop-filter:blur(14px) saturate(130%);color:#403932;font-size:8px;letter-spacing:.12em;text-transform:uppercase;transition:opacity .35s ease,transform .35s ease}
-.about-avatar3d:hover .about-avatar-hint{opacity:.46;transform:translateY(2px)}
-.about-avatar-dot{width:5px;height:5px;border-radius:50%;background:#5e332f;box-shadow:0 0 0 4px rgba(94,51,47,.10)}
-.about-avatar3d.loading::before{animation:avatarPulse 1.5s ease-in-out infinite alternate}
-@keyframes avatarPulse{from{opacity:.55}to{opacity:1}}
-@media(max-width:640px){.about-avatar-hint{display:none}.about-avatar3d{cursor:default}}
-@media(prefers-reduced-motion:reduce){.about-avatar3d::before{animation:none!important}.about-avatar-fallback{transition:none!important}}
+.about-portrait{position:relative;height:min(68vh,640px);margin:0;border-radius:34px;overflow:hidden;box-shadow:0 30px 70px rgba(44,32,22,.16);background:#d8d8d8;cursor:crosshair;isolation:isolate}
+.about-portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.about-portrait-bw{z-index:1}
+.about-portrait-color{z-index:2;-webkit-mask-image:linear-gradient(#0000,#0000);mask-image:linear-gradient(#0000,#0000);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.about-reveal-glow{position:absolute;z-index:3;width:190px;height:190px;border-radius:50%;left:0;top:0;transform:translate(-50%,-50%);pointer-events:none;opacity:0;background:radial-gradient(circle,rgba(255,171,64,.16) 0,rgba(255,171,64,.07) 38%,rgba(255,171,64,0) 72%);mix-blend-mode:screen;filter:blur(2px);transition:opacity .35s ease}
+.about-portrait.is-revealing .about-reveal-glow{opacity:1}
+.about-reveal-hint{position:absolute;z-index:4;left:16px;bottom:16px;padding:8px 11px;border-radius:999px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.42);box-shadow:inset 0 1px 0 rgba(255,255,255,.35);backdrop-filter:blur(12px) saturate(135%);-webkit-backdrop-filter:blur(12px) saturate(135%);font-size:8px;line-height:1;letter-spacing:.12em;text-transform:uppercase;color:#221d19;pointer-events:none;transition:opacity .35s ease,transform .35s var(--spring)}
+.about-portrait.is-revealing .about-reveal-hint{opacity:.42;transform:translateY(3px)}
 .about-copy{max-width:490px}
 .about-copy p{font-size:clamp(15px,1.3vw,18px);line-height:1.75;margin:0 0 34px;color:#3e3935}
 .about-word{display:inline-block;opacity:.17;transform:translateY(.28em);transition:opacity .6s ease,transform .75s var(--spring)}
@@ -395,11 +386,11 @@ body.archive-ready .archive-headline p{opacity:1;transform:none}
   <section class="about" id="about">
     <div class="about-inner">
       <h2 class="about-title">About</h2>
-      <figure class="about-portrait about-avatar3d" id="aboutAvatar3D" aria-label="Interactive 3D avatar of Kiet Anh Nguyen. Move your pointer around the portrait to make the face and eyes follow you.">
-        <canvas id="aboutAvatarCanvas" aria-hidden="true"></canvas>
-        <img class="about-avatar-fallback" src="assets/about-profile.jpeg" alt="Portrait of Kiet Anh Nguyen">
-        <div class="about-avatar-glass" aria-hidden="true"></div>
-        <div class="about-avatar-hint"><span class="about-avatar-dot"></span>Move your cursor</div>
+      <figure class="about-portrait" id="aboutReveal" aria-label="Portrait of Kiet Anh Nguyen. Move across the image to reveal color.">
+        <img class="about-portrait-bw" id="aboutPortraitBW" src="assets/about-bw.png" alt="Portrait of Kiet Anh Nguyen in black and white">
+        <img class="about-portrait-color" id="aboutPortraitColor" src="assets/about-color.jpeg" alt="" aria-hidden="true">
+        <span class="about-reveal-glow" id="aboutRevealGlow" aria-hidden="true"></span>
+        <span class="about-reveal-hint" aria-hidden="true">Move to reveal color</span>
       </figure>
       <div class="about-copy">
         <p data-word-reveal>I study Multimedia Communication at FPT University. I am drawn to work that begins with listening: understanding people and context first, then deciding whether the story should become writing, film, an event, or a cultural experience.</p>
@@ -825,134 +816,131 @@ body.archive-ready .archive-headline p{opacity:1;transform:none}
   addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal()});
 })();
 </script>
+<script>
+(() => {
+  // Orbit-style organic morph reveal, ported from the user's supplied Orbit reference.
+  const stage = document.getElementById('aboutReveal');
+  const bw = document.getElementById('aboutPortraitBW');
+  const color = document.getElementById('aboutPortraitColor');
+  const glow = document.getElementById('aboutRevealGlow');
+  if (!stage || !bw || !color) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-<script type="module">
-(async()=>{
-  const wrap=document.getElementById('aboutAvatar3D');
-  const canvas=document.getElementById('aboutAvatarCanvas');
-  if(!wrap||!canvas)return;
-  const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  wrap.classList.add('loading');
-  try{
-    const THREE=await import('https://cdn.jsdelivr.net/npm/three@0.169.0/+esm');
-    const {GLTFLoader}=await import('https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/loaders/GLTFLoader.js/+esm');
-    const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'high-performance'});
-    renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-    renderer.outputColorSpace=THREE.SRGBColorSpace;
-    renderer.toneMapping=THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure=1.08;
-    const scene=new THREE.Scene();
-    const camera=new THREE.PerspectiveCamera(29,1,.01,100);
-    camera.position.set(0,.08,5.75);
-    camera.lookAt(0,.08,0);
+  const TRAIL_MAX_POINTS = 60;
+  const TRAIL_HEAD_R = 140;
+  const TRAIL_NOISE_AMP = 44;
+  const TRAIL_BLOB_PTS = 24;
+  const TRAIL_FADE_SPEED = 0.92;
+  const TRAIL_SAMPLE_DIST = 8;
 
-    scene.add(new THREE.HemisphereLight(0xfff5e9,0x5b6170,2.35));
-    const key=new THREE.DirectionalLight(0xffead8,4.4);key.position.set(-2.5,3.2,4.5);scene.add(key);
-    const rim=new THREE.DirectionalLight(0x9bb8ff,2.1);rim.position.set(3.2,2.0,-2.0);scene.add(rim);
-    const fill=new THREE.PointLight(0xffffff,1.8,8);fill.position.set(0,-1.5,3);scene.add(fill);
+  const bgCanvas = document.createElement('canvas');
+  const topCanvas = document.createElement('canvas');
+  const bgCtx = bgCanvas.getContext('2d');
+  const topCtx = topCanvas.getContext('2d');
 
-    const loader=new GLTFLoader();
-    const gltf=await loader.loadAsync('assets/kiet-editorial-avatar.glb');
-    const avatar=gltf.scene;
-    avatar.rotation.x=-Math.PI/2;
-    avatar.scale.setScalar(1.68);
-    avatar.position.set(0,-1.45,0);
-    scene.add(avatar);
-    avatar.updateMatrixWorld(true);
+  let canvasW = 0, canvasH = 0, rect = null;
+  let hovering = false, headRadius = 0, time = 0;
+  let points = [], lastX = -9999, lastY = -9999;
+  let mousePos = {x:0,y:0};
+  let headSeed = Math.random()*100, wasActive = false;
 
-    // Re-parent the head assembly to a real pivot so only the face follows the pointer.
-    const headPivot=new THREE.Group();
-    headPivot.name='HeadLookPivot';
-    avatar.add(headPivot);
-    headPivot.position.set(0,0,1.64);
-    const headNames=['head','ear_L','ear_R','nose','hair_mass','hair_fringe_0','hair_fringe_1','hair_fringe_2','hair_fringe_3','glasses_bridge','glass_L','glass_R','temple_L','temple_R'];
-    const headMeshes=[];
-    avatar.traverse(o=>{if(headNames.some(n=>o.name===n||o.name.startsWith(n)))headMeshes.push(o)});
-    avatar.updateMatrixWorld(true);
-    headMeshes.forEach(o=>headPivot.attach(o));
-
-    const eyeWhiteMat=new THREE.MeshStandardMaterial({color:0xf6f1ea,roughness:.55,metalness:0});
-    const irisMat=new THREE.MeshStandardMaterial({color:0x5d3427,roughness:.48});
-    const pupilMat=new THREE.MeshStandardMaterial({color:0x171311,roughness:.38});
-    const eyeGeo=new THREE.SphereGeometry(.027,24,18);
-    const irisGeo=new THREE.SphereGeometry(.0135,22,16);
-    const pupilGeo=new THREE.SphereGeometry(.0065,18,14);
-    const eyeGroups=[];
-    function makeEye(x){
-      const g=new THREE.Group();
-      g.position.set(x,-.091,.025);
-      const white=new THREE.Mesh(eyeGeo,eyeWhiteMat);g.add(white);
-      const iris=new THREE.Mesh(irisGeo,irisMat);iris.position.set(0,-.022,0);g.add(iris);
-      const pupil=new THREE.Mesh(pupilGeo,pupilMat);pupil.position.set(0,-.031,0);g.add(pupil);
-      headPivot.add(g);eyeGroups.push({g,iris,pupil});
+  function resizeCanvases(){
+    rect = stage.getBoundingClientRect();
+    if(rect.width<=0 || rect.height<=0) return;
+    canvasW = Math.round(rect.width); canvasH = Math.round(rect.height);
+    if(bgCanvas.width!==canvasW || bgCanvas.height!==canvasH){
+      bgCanvas.width = topCanvas.width = canvasW;
+      bgCanvas.height = topCanvas.height = canvasH;
     }
-    makeEye(-.043);makeEye(.043);
-
-    // Soft oval ground shadow, keeps the avatar from floating.
-    const shadowMat=new THREE.MeshBasicMaterial({color:0x493c35,transparent:true,opacity:.12,depthWrite:false});
-    const shadow=new THREE.Mesh(new THREE.CircleGeometry(.62,48),shadowMat);
-    shadow.scale.set(1,.38,1);shadow.rotation.x=-Math.PI/2;shadow.position.set(0,-1.58,-.04);scene.add(shadow);
-
-    const target={x:0,y:0}, smooth={x:0,y:0};
-    const pointerFine=matchMedia('(hover:hover) and (pointer:fine)').matches;
-    const move=e=>{
-      // Track the pointer across the whole viewport while About is visible,
-      // so the avatar can keep eye contact even when the cursor is over the copy.
-      const r=wrap.getBoundingClientRect();
-      const cx=r.left+r.width/2, cy=r.top+r.height*.38;
-      const rangeX=Math.max(220,innerWidth*.34), rangeY=Math.max(180,innerHeight*.34);
-      target.x=Math.max(-1,Math.min(1,(e.clientX-cx)/rangeX));
-      target.y=Math.max(-1,Math.min(1,-(e.clientY-cy)/rangeY));
-    };
-    if(pointerFine&&!reduceMotion){
-      addEventListener('pointermove',move,{passive:true});
-    }
-
-    function resize(){
-      const r=wrap.getBoundingClientRect();
-      const w=Math.max(2,Math.round(r.width)),h=Math.max(2,Math.round(r.height));
-      renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();
-    }
-    new ResizeObserver(resize).observe(wrap);resize();
-
-    const clock=new THREE.Clock();
-    let visible=true;
-    new IntersectionObserver(([entry])=>{visible=entry.isIntersecting},{rootMargin:'150px'}).observe(wrap);
-    function render(){
-      requestAnimationFrame(render);
-      if(!visible)return;
-      const dt=Math.min(.05,clock.getDelta());
-      const ease=1-Math.pow(.001,dt);
-      smooth.x+=((reduceMotion?0:target.x)-smooth.x)*ease;
-      smooth.y+=((reduceMotion?0:target.y)-smooth.y)*ease;
-
-      // Our source mesh is Z-up. Yaw is local Z; pitch is local X.
-      const yaw=-smooth.x*.16;
-      const pitch=smooth.y*.10;
-      headPivot.rotation.z+=(yaw-headPivot.rotation.z)*.085;
-      headPivot.rotation.x+=(pitch-headPivot.rotation.x)*.085;
-
-      eyeGroups.forEach(({iris,pupil})=>{
-        const ex=smooth.x*.0075, ez=smooth.y*.0062;
-        iris.position.x+=(ex-iris.position.x)*.12;
-        iris.position.z+=(ez-iris.position.z)*.12;
-        iris.position.y=-.022;
-        pupil.position.x+=(ex*1.15-pupil.position.x)*.15;
-        pupil.position.z+=(ez*1.15-pupil.position.z)*.15;
-        pupil.position.y=-.031;
-      });
-
-      // Tiny breathing/idle movement gives life without competing with the text.
-      if(!pointerFine&&!reduceMotion) avatar.rotation.z=Math.sin(performance.now()*.00055)*.018;
-      renderer.render(scene,camera);
-    }
-    wrap.classList.remove('loading');wrap.classList.add('ready');
-    render();
-  }catch(err){
-    console.warn('3D About avatar unavailable:',err);
-    wrap.classList.remove('loading');
-    // The original portrait remains visible as a graceful fallback.
   }
+  resizeCanvases();
+  addEventListener('resize', resizeCanvases, {passive:true});
+
+  function updateMousePos(clientX,clientY){
+    rect = stage.getBoundingClientRect();
+    if(!rect.width || !rect.height) return;
+    const scaleX = canvasW/rect.width, scaleY = canvasH/rect.height;
+    mousePos.x=(clientX-rect.left)*scaleX; mousePos.y=(clientY-rect.top)*scaleY;
+    if(glow){ glow.style.left=(clientX-rect.left)+'px'; glow.style.top=(clientY-rect.top)+'px'; }
+  }
+
+  stage.addEventListener('pointerenter',e=>{hovering=true;stage.classList.add('is-revealing');updateMousePos(e.clientX,e.clientY)});
+  stage.addEventListener('pointermove',e=>{hovering=true;stage.classList.add('is-revealing');updateMousePos(e.clientX,e.clientY)});
+  stage.addEventListener('pointerleave',()=>{hovering=false;stage.classList.remove('is-revealing')});
+  stage.addEventListener('touchstart',e=>{const t=e.touches&&e.touches[0];if(!t)return;hovering=true;stage.classList.add('is-revealing');updateMousePos(t.clientX,t.clientY)},{passive:true});
+  stage.addEventListener('touchmove',e=>{const t=e.touches&&e.touches[0];if(!t)return;hovering=true;updateMousePos(t.clientX,t.clientY)},{passive:true});
+  stage.addEventListener('touchend',()=>{hovering=false;stage.classList.remove('is-revealing')},{passive:true});
+
+  function drawMorphBlob(ctx,cx,cy,r,t,seed){
+    if(r<2)return;
+    const pts=[];
+    for(let i=0;i<TRAIL_BLOB_PTS;i++){
+      const angle=(i*2*Math.PI)/TRAIL_BLOB_PTS;
+      const n1=Math.sin(angle*3+t*1.4+seed)*.45;
+      const n2=Math.sin(angle*5-t*.9+seed*2.3)*.3;
+      const n3=Math.cos(angle*2+t*1.8+seed*.7)*.25;
+      const noise=(n1+n2+n3)*TRAIL_NOISE_AMP*(r/TRAIL_HEAD_R);
+      const rad=Math.max(1,r+noise);
+      pts.push({x:cx+Math.cos(angle)*rad,y:cy+Math.sin(angle)*rad});
+    }
+    ctx.beginPath();
+    const last=pts[pts.length-1], first=pts[0];
+    ctx.moveTo((last.x+first.x)/2,(last.y+first.y)/2);
+    for(let j=0;j<pts.length;j++){
+      const curr=pts[j], next=pts[(j+1)%pts.length];
+      ctx.quadraticCurveTo(curr.x,curr.y,(curr.x+next.x)/2,(curr.y+next.y)/2);
+    }
+    ctx.closePath(); ctx.fill();
+  }
+
+  function tick(){
+    requestAnimationFrame(tick);
+    if(canvasW<=0||canvasH<=0)resizeCanvases();
+    const responsiveR=Math.min(TRAIL_HEAD_R,Math.max(86,canvasW*.34));
+    const targetR=hovering?responsiveR:0;
+    headRadius+=(targetR-headRadius)*(hovering?.14:.04);
+
+    if(hovering&&headRadius>5){
+      const dx=mousePos.x-lastX,dy=mousePos.y-lastY,dist=Math.hypot(dx,dy);
+      if(dist>TRAIL_SAMPLE_DIST){
+        points.push({x:mousePos.x,y:mousePos.y,r:headRadius,alpha:1,seed:Math.random()*100});
+        if(points.length>TRAIL_MAX_POINTS)points.shift();
+        lastX=mousePos.x;lastY=mousePos.y;
+      }
+    }
+    for(let i=points.length-1;i>=0;i--){
+      points[i].alpha*=TRAIL_FADE_SPEED; points[i].r*=.995;
+      if(points[i].alpha<.01)points.splice(i,1);
+    }
+    time+=.016;
+
+    const active=hovering||headRadius>.5||points.length>0;
+    if(!active){
+      if(wasActive){
+        bw.style.webkitMaskImage='none';bw.style.maskImage='none';
+        color.style.webkitMaskImage='linear-gradient(#0000,#0000)';color.style.maskImage='linear-gradient(#0000,#0000)';
+        wasActive=false;
+      }
+      return;
+    }
+    wasActive=true;
+
+    bgCtx.clearRect(0,0,canvasW,canvasH); bgCtx.globalCompositeOperation='source-over';
+    bgCtx.fillStyle='#fff'; bgCtx.fillRect(0,0,canvasW,canvasH); bgCtx.globalCompositeOperation='destination-out';
+    for(const p of points){bgCtx.fillStyle=`rgba(0,0,0,${p.alpha})`;drawMorphBlob(bgCtx,p.x,p.y,p.r,time,p.seed)}
+    if(headRadius>2){bgCtx.fillStyle='#000';drawMorphBlob(bgCtx,mousePos.x,mousePos.y,headRadius,time,headSeed)}
+
+    topCtx.clearRect(0,0,canvasW,canvasH); topCtx.globalCompositeOperation='source-over';
+    for(const p of points){topCtx.fillStyle=`rgba(255,255,255,${p.alpha})`;drawMorphBlob(topCtx,p.x,p.y,p.r,time,p.seed)}
+    if(headRadius>2){topCtx.fillStyle='#fff';drawMorphBlob(topCtx,mousePos.x,mousePos.y,headRadius,time,headSeed)}
+
+    const bgUrl=`url(${bgCanvas.toDataURL()})`, topUrl=`url(${topCanvas.toDataURL()})`;
+    bw.style.webkitMaskImage=bgUrl; bw.style.maskImage=bgUrl;
+    bw.style.webkitMaskSize=bw.style.maskSize='100% 100%'; bw.style.webkitMaskRepeat=bw.style.maskRepeat='no-repeat';
+    color.style.webkitMaskImage=topUrl; color.style.maskImage=topUrl;
+    color.style.webkitMaskSize=color.style.maskSize='100% 100%'; color.style.webkitMaskRepeat=color.style.maskRepeat='no-repeat';
+  }
+  requestAnimationFrame(tick);
 })();
 </script>
 
