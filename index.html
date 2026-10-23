@@ -123,15 +123,16 @@ button,a{-webkit-tap-highlight-color:transparent}
 .work-head{width:min(var(--max),calc(100% - 16px));margin:0 auto 76px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
 .work-head h2{margin:0;font-size:clamp(70px,11vw,170px);line-height:.73;text-transform:uppercase;letter-spacing:-.075em;color:#ece4dc}
 .work-head p{max-width:420px;margin:0 0 10px;color:#96928d;font-size:13px;line-height:1.65}
-.project-stack{width:min(1180px,100%);margin:auto;position:relative;padding-bottom:8vh}
-.project-card{position:sticky;top:calc(74px + var(--i)*24px);height:min(76vh,720px);min-height:570px;margin-bottom:11vh;border-radius:42px;overflow:hidden;border:1px solid rgba(255,255,255,.25);background:linear-gradient(145deg,rgba(255,255,255,.095),rgba(255,255,255,.018));box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 0 rgba(255,255,255,.04),0 34px 90px rgba(0,0,0,.42);backdrop-filter:blur(26px) saturate(160%);-webkit-backdrop-filter:blur(26px) saturate(160%);transform-origin:center top;will-change:transform}
+.project-stack{width:min(1180px,100%);margin:auto;position:relative;display:flex;flex-direction:column;gap:40px;padding-bottom:10vh}
+.project-slot{height:85vh;min-height:650px;display:flex;align-items:flex-start;justify-content:center;position:sticky;top:calc(88px + var(--i)*28px);z-index:calc(20 + var(--i));transform-origin:center top}
+.project-card{position:relative;width:100%;height:min(76vh,720px);min-height:570px;border-radius:42px;overflow:hidden;border:1px solid rgba(255,255,255,.25);background:linear-gradient(145deg,rgba(255,255,255,.095),rgba(255,255,255,.018));box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 0 rgba(255,255,255,.04),0 34px 90px rgba(0,0,0,.58);backdrop-filter:blur(26px) saturate(160%);-webkit-backdrop-filter:blur(26px) saturate(160%);transform-origin:center top;will-change:transform;transition:box-shadow .25s ease}
 .project-card[data-theme="story"]{background:linear-gradient(145deg,rgba(72,38,50,.22),rgba(255,255,255,.025))}
 .project-card[data-theme="community"]{background:linear-gradient(145deg,rgba(36,83,58,.20),rgba(255,255,255,.022))}
 .project-card[data-theme="culture"]{background:linear-gradient(145deg,rgba(113,42,61,.22),rgba(255,255,255,.022))}
 
 .project-card::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(128deg,rgba(255,255,255,.24) 0%,rgba(255,255,255,.07) 11%,rgba(255,255,255,0) 34%,rgba(255,255,255,.025) 70%,rgba(255,255,255,.13) 100%);opacity:.78;mix-blend-mode:screen}
 .project-card::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 16% 8%,rgba(255,255,255,.22),transparent 25%),radial-gradient(circle at 85% 0%,rgba(255,255,255,.10),transparent 22%)}
-.project-shade{position:absolute;inset:0;background:#050506;opacity:0;pointer-events:none;z-index:9}
+.project-shade{display:none!important}
 .project-card-inner{position:relative;z-index:3;height:100%;padding:28px;display:grid;grid-template-rows:auto 1fr;gap:20px}
 .project-top{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:22px;padding:14px 16px;border-radius:24px;background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.028));border:1px solid rgba(255,255,255,.21);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 10px 30px rgba(0,0,0,.16);backdrop-filter:blur(22px) saturate(155%);-webkit-backdrop-filter:blur(22px) saturate(155%)}
 .project-id{display:flex;align-items:baseline;gap:22px;min-width:0}
@@ -227,7 +228,7 @@ button,a{-webkit-tap-highlight-color:transparent}
   .hero{padding:88px 18px 22px}.hero-name{top:15vh;font-size:18vw}.hero-photo-wrap{width:min(78vw,600px);height:59vh;bottom:13vh}.hero-statement{font-size:34px;max-width:270px}.hero-top-right{display:none}.hero-identity{max-width:210px}.hero-scroll{display:none}
   .reel{padding:30px 0 48px}.reel-tile{width:300px;height:190px}
   .about{padding:88px 0 100px;border-radius:34px 34px 0 0}.about-inner{width:calc(100% - 36px);grid-template-columns:1fr 1fr;gap:24px}.about-title{grid-column:1/-1;font-size:22vw}.about-portrait{height:58vh}.about-copy{align-self:center}.about-meta{grid-template-columns:1fr}
-  .work{padding:95px 14px 100px;border-radius:34px 34px 0 0;margin-top:-34px}.work-head{display:block;margin-bottom:50px}.work-head p{margin-top:25px}.project-card{top:68px;height:680px;min-height:0;border-radius:30px}.project-card-inner{padding:20px}.project-visual{grid-template-columns:1fr 1.25fr}.project-top{align-items:flex-start}.project-id{gap:13px}.project-title{font-size:29px}.project-number{font-size:48px}
+  .work{padding:95px 14px 100px;border-radius:34px 34px 0 0;margin-top:-34px}.work-head{display:block;margin-bottom:50px}.work-head p{margin-top:25px}.project-slot{top:calc(76px + var(--i)*22px);height:80vh;min-height:620px}.project-card{height:690px;min-height:0;border-radius:30px}.project-card-inner{padding:20px}.project-visual{grid-template-columns:1fr 1.25fr}.project-top{align-items:flex-start}.project-id{gap:13px}.project-title{font-size:29px}.project-number{font-size:48px}
   .culture-strip{width:calc(100% - 28px)}.culture-strip-grid{grid-template-columns:1fr 1fr}.culture-mini:last-child{grid-column:1/-1}
   .next-inner,.footer-inner{width:calc(100% - 36px)}
   .modal-hero,.modal-grid{grid-template-columns:1fr}.modal-links{justify-content:flex-start}.modal-feature{grid-template-columns:1fr}.modal-feature .hero-media{min-height:420px}.modal-feature .side-stack{grid-template-columns:1fr 1fr;grid-template-rows:none}.modal-feature .side-media{min-height:250px}
@@ -237,7 +238,7 @@ button,a{-webkit-tap-highlight-color:transparent}
   .hero{min-height:100svh;padding-top:68px}.hero-name{top:14vh;font-size:21vw;line-height:.79}.hero-photo-wrap{width:calc(100% - 42px);height:54vh;bottom:18vh}.hero-photo{border-radius:27px}.hero-top .eyebrow{max-width:180px}.hero-bottom{display:block}.hero-identity{font-size:11px;max-width:245px}.hero-statement{display:none}
   .reel-row{overflow-x:auto;scrollbar-width:none}.reel-row::-webkit-scrollbar{display:none}.reel-track{transform:none!important;padding:0 12px}.reel-tile{width:240px;height:155px;border-radius:18px}
   .about-inner{grid-template-columns:1fr}.about-title{font-size:26vw}.about-portrait{height:64vh}.about-copy p{font-size:15px}.about-meta{grid-template-columns:1fr 1fr}
-  .work-head h2{font-size:22vw}.work-head p{font-size:12px}.project-stack{padding-bottom:20px}.project-card{position:relative!important;top:auto!important;height:auto;min-height:0;margin-bottom:18px;transform:none!important;border-radius:26px}.project-card-inner{display:block;padding:16px}.project-top{margin-bottom:14px}.project-number{font-size:38px}.project-title{font-size:24px}.explore-btn{padding:0 13px;min-height:38px}.project-visual{grid-template-columns:1fr;display:block}.project-left{grid-template-columns:1fr 1fr;grid-template-rows:none;display:grid;margin-bottom:10px}.project-img{height:190px;border-radius:20px}.project-main{height:340px}.project-shade{display:none}
+  .work-head h2{font-size:22vw}.work-head p{font-size:12px}.project-stack{padding-bottom:20px;gap:18px}.project-slot{position:relative!important;top:auto!important;height:auto;min-height:0;transform:none!important}.project-card{height:auto;min-height:0;transform:none!important;border-radius:26px}.project-card-inner{display:block;padding:16px}.project-top{margin-bottom:14px}.project-number{font-size:38px}.project-title{font-size:24px}.explore-btn{padding:0 13px;min-height:38px}.project-visual{grid-template-columns:1fr;display:block}.project-left{grid-template-columns:1fr 1fr;grid-template-rows:none;display:grid;margin-bottom:10px}.project-img{height:190px;border-radius:20px}.project-main{height:340px}.project-shade{display:none}
   .culture-strip{padding-top:45px}.culture-strip-head{display:block}.culture-strip-head p{margin-top:12px}.culture-strip-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px}.culture-mini{min-width:78vw;height:320px;scroll-snap-align:start}.culture-mini:last-child{grid-column:auto}
   .next{min-height:78svh}.next-inner{padding:12vh 0 9vh}.next-title{font-size:17vw}.next-copy{font-size:13px;max-width:90%}
   .footer{padding:75px 0 24px}.footer-top{display:block;padding-bottom:60px}.footer h2{font-size:23vw;margin-bottom:40px}.footer-links{justify-content:flex-start}.footer-meta{display:block;line-height:1.8}
@@ -246,7 +247,7 @@ button,a{-webkit-tap-highlight-color:transparent}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-  .about-word{opacity:1;transform:none}.hero-photo,.reel-track,.project-card{transform:none!important}
+  .about-word{opacity:1;transform:none}.hero-photo,.reel-track,.project-card,.project-slot{transform:none!important}
 }
 
 
@@ -399,7 +400,8 @@ body.archive-ready .archive-headline p{opacity:1;transform:none}
     </div>
 
     <div class="project-stack">
-      <article class="project-card" data-theme="story" style="--i:0" data-project="stories">
+      <div class="project-slot" style="--i:0;--target-scale:.94" data-stack-slot>
+      <article class="project-card" data-theme="story" data-project="stories">
         <div class="project-shade"></div>
         <div class="project-card-inner">
           <div class="project-top">
@@ -415,8 +417,10 @@ body.archive-ready .archive-headline p{opacity:1;transform:none}
           </div>
         </div>
       </article>
+      </div>
 
-      <article class="project-card" data-theme="community" style="--i:1" data-project="community">
+      <div class="project-slot" style="--i:1;--target-scale:.97" data-stack-slot>
+      <article class="project-card" data-theme="community" data-project="community">
         <div class="project-shade"></div>
         <div class="project-card-inner">
           <div class="project-top">
@@ -432,8 +436,10 @@ body.archive-ready .archive-headline p{opacity:1;transform:none}
           </div>
         </div>
       </article>
+      </div>
 
-      <article class="project-card" data-theme="culture" style="--i:2" data-project="culture">
+      <div class="project-slot" style="--i:2;--target-scale:1" data-stack-slot>
+      <article class="project-card" data-theme="culture" data-project="culture">
         <div class="project-shade"></div>
         <div class="project-card-inner">
           <div class="project-top">
@@ -449,6 +455,7 @@ body.archive-ready .archive-headline p{opacity:1;transform:none}
           </div>
         </div>
       </article>
+      </div>
     </div>
 
     <div class="culture-strip" aria-label="Additional cultural participation">
@@ -731,23 +738,41 @@ body.archive-ready .archive-headline p{opacity:1;transform:none}
     else new IntersectionObserver(([entry],obs)=>{if(entry.isIntersecting){p.querySelectorAll('.about-word').forEach(w=>w.classList.add('visible'));obs.disconnect();}}, {threshold:.38}).observe(p);
   });
 
-  // Sticky card recede: the cleanest idea borrowed from the reference project stack.
-  const cards = [...document.querySelectorAll('.project-card')];
+  // True sticky stack, matched to the Jack reference:
+  // each 85vh sticky slot owns its own scroll progress and scales to a different target.
+  const slots = [...document.querySelectorAll('[data-stack-slot]')];
   let cardTick = false;
+  function stackMetrics(slot){
+    const stickyTop = parseFloat(getComputedStyle(slot).top) || 0;
+    const docTop = slot.getBoundingClientRect().top + scrollY;
+    return {stickyTop, docTop, span: Math.max(1, slot.offsetHeight)};
+  }
+  let metrics = slots.map(stackMetrics);
+  const refreshStack = () => { metrics = slots.map(stackMetrics); updateCards(); };
   const updateCards = () => {
-    if (innerWidth <= 640 || reduceMotion) { cards.forEach(c=>{c.style.transform='';const s=c.querySelector('.project-shade');if(s)s.style.opacity='0';});cardTick=false;return; }
-    const vh = innerHeight || 1;
-    cards.forEach((card,i) => {
-      const next = cards[i+1];
-      if (!next) return;
-      const p = Math.max(0,Math.min(1,1-next.getBoundingClientRect().top/vh));
-      card.style.transform = `scale(${1-.045*p})`;
-      card.querySelector('.project-shade').style.opacity = String(.28*p);
+    if (innerWidth <= 640 || reduceMotion) {
+      slots.forEach(slot => { const card=slot.querySelector('.project-card'); if(card) card.style.transform=''; });
+      cardTick=false; return;
+    }
+    const y = scrollY;
+    slots.forEach((slot,i) => {
+      const card = slot.querySelector('.project-card'); if(!card) return;
+      const m = metrics[i];
+      const start = m.docTop - m.stickyTop;
+      const progress = Math.max(0, Math.min(1, (y - start) / m.span));
+      const target = parseFloat(getComputedStyle(slot).getPropertyValue('--target-scale')) || 1;
+      const scale = 1 + (target - 1) * progress;
+      card.style.transform = `scale(${scale})`;
+      // Shadow deepens slightly as the card recedes; no dark overlay, matching the reference feel.
+      const depth = 0.58 + progress * 0.16;
+      card.style.boxShadow = `inset 0 1px 0 rgba(255,255,255,.30), inset 0 -1px 0 rgba(255,255,255,.04), 0 34px 90px rgba(0,0,0,${depth.toFixed(3)})`;
     });
     cardTick=false;
   };
   const onCardScroll=()=>{if(!cardTick){cardTick=true;requestAnimationFrame(updateCards)}};
-  addEventListener('scroll',onCardScroll,{passive:true});addEventListener('resize',updateCards,{passive:true});updateCards();
+  addEventListener('scroll',onCardScroll,{passive:true});
+  addEventListener('resize',()=>requestAnimationFrame(refreshStack),{passive:true});
+  requestAnimationFrame(refreshStack);
 
   // Project modal: detail stays available without cluttering the main page.
   const modal = document.getElementById('projectModal');
