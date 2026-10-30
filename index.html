@@ -354,451 +354,436 @@ body.archive-ready .archive-headline p{opacity:1;transform:none}
 
 
 /* =========================================================
-   V65 — SCROLL STORIES + CULTURE STACK
-   Main work becomes editorial scroll storytelling.
-   Sticky stack moves to "Culture, beyond the projects."
+   V66 — ART-DIRECTED SCROLL STORIES
+   Spatial editorial composition; no UI rails/chips.
    ========================================================= */
-.work-scroll{
-  padding:128px 22px 150px;
-  overflow:visible;
-}
-.work-head-scroll{
-  margin-bottom:70px;
-  align-items:flex-end;
-}
-.work-head-scroll>div{min-width:0}
-.work-head-scroll .eyebrow{margin:0 0 14px;color:#8f8983}
-.work-head-scroll h2{margin:0}
-.work-head-scroll>p{max-width:500px}
-
-.story-sequence{
-  width:min(1280px,100%);
-  margin:auto;
-}
-.story-chapter{
+.art-work{
   position:relative;
-  height:calc(var(--story-steps) * 105vh + 45vh);
-  min-height:170vh;
-  border-top:1px solid rgba(255,255,255,.11);
+  background:#07080a;
+  padding:130px 0 150px;
+  border-radius:52px 52px 0 0;
+  margin-top:-52px;
+  overflow:visible;
+  z-index:4;
 }
-.story-sticky{
+.art-work::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  border-radius:52px 52px 0 0;
+  background:
+    radial-gradient(circle at 16% 20%,rgba(107,54,75,.24),transparent 25%),
+    radial-gradient(circle at 84% 42%,rgba(48,85,65,.20),transparent 28%),
+    linear-gradient(180deg,#090a0c,#07080a);
+}
+.art-work-intro{
+  width:min(1240px,calc(100% - 72px));
+  margin:0 auto 90px;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:7vw;
+  align-items:end;
+}
+.art-work-intro .eyebrow{grid-column:1/-1;margin:0 0 -34px;color:#85817c}
+.art-work-intro h2{
+  margin:0;
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-weight:500;
+  font-size:clamp(78px,11vw,170px);
+  line-height:.72;
+  letter-spacing:-.07em;
+  text-transform:uppercase;
+  color:#eee6de;
+}
+.art-work-intro-copy{
+  margin:0 0 8px;
+  max-width:480px;
+  font-size:13px;
+  line-height:1.75;
+  color:#928d88;
+}
+
+.art-stories{width:100%}
+.art-story{
+  position:relative;
+  height:calc(var(--steps) * 115vh + 35vh);
+  min-height:180vh;
+  border-top:1px solid rgba(255,255,255,.09);
+}
+.art-stage{
   position:sticky;
   top:0;
   height:100svh;
-  min-height:680px;
-  display:grid;
-  grid-template-columns:minmax(315px,.8fr) minmax(0,1.55fr);
-  gap:clamp(28px,5vw,72px);
-  align-items:center;
+  min-height:690px;
   overflow:hidden;
-}
-.story-copy-rail{
-  position:relative;
-  z-index:12;
-  min-width:0;
-  padding:86px 0 54px 6px;
-}
-.story-copy-head{
-  padding-bottom:22px;
-  border-bottom:1px solid rgba(255,255,255,.13);
-}
-.story-index{
-  display:block;
-  font-family:"Cormorant Garamond",Georgia,serif;
-  font-size:clamp(52px,5.8vw,84px);
-  line-height:.78;
-  color:#ece3db;
-  letter-spacing:-.055em;
-}
-.story-kicker,.story-step-no{
-  margin:10px 0 0;
-  font-size:8px;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  color:#8f8983;
-}
-.story-copy-head h3{
-  font-family:"Cormorant Garamond",Georgia,serif;
-  font-weight:500;
-  font-size:clamp(42px,4.5vw,68px);
-  line-height:.84;
-  letter-spacing:-.05em;
-  color:#f2ebe4;
-  margin:13px 0 12px;
-}
-.story-role{
-  margin:0;
-  font-size:11px;
-  line-height:1.55;
-  color:#aaa39c;
-}
-.story-step-stack{
-  position:relative;
-  min-height:255px;
-  margin-top:24px;
-}
-.story-step-stack-tall{min-height:295px}
-.story-step-copy{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  transform:translateY(24px);
-  filter:blur(4px);
-  pointer-events:none;
-  transition:opacity .28s linear,transform .42s var(--spring),filter .35s ease;
-}
-.story-step-copy.is-active{
-  opacity:1;
-  transform:none;
-  filter:none;
-  pointer-events:auto;
-}
-.story-step-copy h4{
-  font-family:"Cormorant Garamond",Georgia,serif;
-  font-weight:500;
-  letter-spacing:-.035em;
-  font-size:clamp(27px,2.7vw,39px);
-  line-height:.96;
-  color:#f1eae4;
-  margin:10px 0 15px;
-}
-.story-step-copy>p:not(.story-step-no){
-  margin:0;
-  max-width:420px;
-  font-size:12px;
-  line-height:1.72;
-  color:#aaa49e;
-}
-.story-facts{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:18px;
-}
-.story-facts span{
-  display:flex;
-  flex-direction:column;
-  gap:3px;
-  min-width:112px;
-  padding:9px 11px;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,.13);
-  background:linear-gradient(135deg,rgba(255,255,255,.075),rgba(255,255,255,.018));
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
-  backdrop-filter:blur(14px) saturate(135%);
-  -webkit-backdrop-filter:blur(14px) saturate(135%);
-  color:#8e8882;
-  font-size:7px;
-  line-height:1.35;
-  letter-spacing:.07em;
-  text-transform:uppercase;
-}
-.story-facts strong{
-  color:#eee7df;
-  font-size:10px;
-  letter-spacing:.02em;
-  text-transform:none;
-  font-weight:600;
-}
-.story-explore{
-  margin-top:17px;
-  position:relative;
-  z-index:20;
-  background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.025));
-}
-.story-visual-field{
-  position:relative;
-  height:min(78vh,760px);
-  min-height:570px;
   isolation:isolate;
 }
-.story-step-visual{
+.art-stage::before{
+  content:"";
+  position:absolute;
+  inset:10% 18%;
+  z-index:-1;
+  background:radial-gradient(circle,var(--accent) 0%,transparent 68%);
+  opacity:.16;
+  filter:blur(76px);
+}
+.art-stage::after{
+  content:"";
   position:absolute;
   inset:0;
+  z-index:40;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(7,8,10,.16),transparent 20%,transparent 78%,rgba(7,8,10,.25));
+}
+.art-story-mark{
+  position:absolute;
+  z-index:30;
+  left:34px;
+  top:28px;
+  font-size:8px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#88827d;
+}
+.art-story-title{
+  position:absolute;
+  z-index:1;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:96%;
+  text-align:center;
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-weight:500;
+  font-size:clamp(86px,13vw,196px);
+  line-height:.66;
+  letter-spacing:-.075em;
+  text-transform:uppercase;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(236,227,216,.12);
+  user-select:none;
   pointer-events:none;
 }
-.story-media{
-  --pop-opacity:0;
-  --pop-y:62px;
-  --pop-scale:.90;
+.art-story-title-community{font-size:clamp(110px,17vw,240px)}
+.art-story-title-culture{font-size:clamp(78px,11vw,160px);line-height:.72}
+
+.art-scene{
   position:absolute;
-  left:var(--x);
-  top:var(--y);
+  inset:0;
+  z-index:5;
+  pointer-events:none;
+}
+.art-copy{
+  position:absolute;
+  z-index:18;
+  width:min(390px,31vw);
+  opacity:0;
+  transform:translateY(34px);
+  filter:blur(7px);
+  will-change:transform,opacity,filter;
+  color:#eee7df;
+}
+.art-copy-a{left:5.5%;top:27%}
+.art-copy-b{left:36%;bottom:5.5%;width:min(470px,38vw)}
+.art-copy-bottom-left{left:5.5%;bottom:7%}
+.art-copy-top-right{right:5.5%;top:18%;text-align:right}
+.art-copy-top-right .art-meta-line{justify-content:flex-end}
+.art-copy-top-left{left:5.5%;top:18%}
+.art-copy-bottom-right{right:5.5%;bottom:7%;text-align:right}
+.art-copy-bottom-right .art-meta-line{justify-content:flex-end}
+
+.art-scene-index{
+  display:block;
+  margin-bottom:10px;
+  font-size:8px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#9a938d;
+}
+.art-copy h3{
+  margin:0 0 14px;
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:clamp(34px,4.1vw,62px);
+  line-height:.86;
+  font-weight:500;
+  letter-spacing:-.045em;
+  color:#f2ebe4;
+}
+.art-copy p{
+  margin:0;
+  font-size:11px;
+  line-height:1.74;
+  color:#a8a19b;
+}
+.art-meta-line{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 14px;
+  margin-top:16px;
+  padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.14);
+  font-size:7px;
+  line-height:1.4;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:#77726d;
+}
+.art-meta-line span{white-space:nowrap}
+
+.art-photo{
+  position:absolute;
+  z-index:10;
+  left:var(--l);
+  top:var(--t);
   width:var(--w);
   height:var(--h);
   margin:0;
   overflow:hidden;
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.19);
+  border-radius:7px;
   background:#151619;
-  box-shadow:0 28px 70px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.12);
-  opacity:var(--pop-opacity);
-  transform:translate3d(0,var(--pop-y),0) rotate(var(--rot)) scale(var(--pop-scale));
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 32px 90px rgba(0,0,0,.52);
+  opacity:0;
+  transform:translate3d(0,90px,0) rotate(calc(var(--r) * 1.55)) scale(.78);
   transform-origin:center;
+  filter:blur(12px) saturate(.86);
   will-change:transform,opacity,filter;
-  filter:blur(var(--pop-blur,5px)) saturate(.92);
 }
-.story-media img{
+.art-photo img{
   width:100%;
   height:100%;
   object-fit:cover;
-  transition:transform .8s var(--spring);
 }
-.story-media-poster img{object-fit:contain;background:#e8dfd2}
-.story-media figcaption{
-  position:absolute;
-  z-index:3;
-  left:10px;
-  right:10px;
-  bottom:10px;
-  padding:9px 11px;
-  border-radius:14px;
-  color:#eee7df;
-  font-size:7px;
-  line-height:1.35;
-  letter-spacing:.09em;
-  text-transform:uppercase;
-  background:linear-gradient(135deg,rgba(10,10,12,.48),rgba(10,10,12,.17));
-  border:1px solid rgba(255,255,255,.15);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.14);
-  backdrop-filter:blur(14px) saturate(145%);
-  -webkit-backdrop-filter:blur(14px) saturate(145%);
-}
-.story-media::after{
+.art-photo-poster img{object-fit:contain;background:#e8dfd2}
+.art-photo::after{
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
-  background:linear-gradient(130deg,rgba(255,255,255,.14),transparent 26%,transparent 72%,rgba(255,255,255,.05));
-  mix-blend-mode:screen;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.05);
 }
-.story-film .story-visual-field::before,
-.story-community .story-visual-field::before,
-.story-cultural .story-visual-field::before{
-  content:"";
+.art-photo figcaption{
   position:absolute;
-  inset:12% 4%;
-  border-radius:50%;
-  filter:blur(50px);
-  opacity:.35;
+  z-index:4;
+  left:10px;
+  bottom:9px;
+  max-width:calc(100% - 20px);
+  padding:6px 8px;
+  background:rgba(7,8,10,.52);
+  backdrop-filter:blur(9px);
+  -webkit-backdrop-filter:blur(9px);
+  font-size:6px;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:#d9d1ca;
+}
+
+.art-note{
+  position:absolute;
+  z-index:17;
+  width:210px;
+  opacity:0;
+  transform:translateY(25px);
+  filter:blur(6px);
+  color:#9c958f;
+}
+.art-note-right{right:6%;top:19%}
+.art-note span{
+  display:block;
+  margin-bottom:8px;
+  font-size:7px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#77716c;
+}
+.art-note p{
+  margin:0;
+  padding-left:12px;
+  border-left:1px solid rgba(255,255,255,.15);
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:21px;
+  line-height:1.15;
+  color:#bcb4ad;
+}
+
+.art-location{
+  position:absolute;
+  z-index:2;
+  left:50%;
+  top:43%;
+  transform:translate(-50%,-50%);
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:clamp(115px,18vw,270px);
+  line-height:.7;
+  letter-spacing:-.075em;
+  text-transform:uppercase;
+  color:rgba(238,231,223,.045);
+  white-space:nowrap;
   pointer-events:none;
 }
-.story-film .story-visual-field::before{background:radial-gradient(circle,rgba(117,55,71,.45),transparent 68%)}
-.story-community .story-visual-field::before{background:radial-gradient(circle,rgba(50,104,72,.38),transparent 68%)}
-.story-cultural .story-visual-field::before{background:radial-gradient(circle,rgba(128,57,77,.38),transparent 68%)}
+.art-location-wide{font-size:clamp(105px,16vw,235px)}
+
+.art-explore{
+  position:absolute;
+  z-index:35;
+  right:30px;
+  bottom:26px;
+  min-height:38px;
+  padding:0 14px;
+  background:linear-gradient(135deg,rgba(255,255,255,.11),rgba(255,255,255,.025));
+}
 
 /* Culture stack */
-.culture-stack-section{
-  width:min(1150px,100%);
-  margin:70px auto 0;
+.art-culture-stack{
+  width:min(1160px,calc(100% - 48px));
+  margin:40px auto 0;
   padding-top:120px;
-  border-top:1px solid rgba(255,255,255,.11);
+  border-top:1px solid rgba(255,255,255,.10);
 }
-.culture-stack-head{
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:60px;
-  align-items:end;
-  margin-bottom:54px;
-}
-.culture-stack-head .eyebrow{margin:0 0 12px;color:#8f8983}
-.culture-stack-head h3{
-  margin:0;
-  font-family:"Cormorant Garamond",Georgia,serif;
-  font-size:clamp(54px,7vw,104px);
-  font-weight:500;
-  letter-spacing:-.055em;
-  line-height:.78;
-  color:#eee6df;
-}
-.culture-stack-head>p{
-  max-width:430px;
-  justify-self:end;
-  margin:0 0 8px;
-  color:#938d87;
-  font-size:12px;
-  line-height:1.7;
-}
-.culture-stack{
+.art-culture-head{
   position:relative;
-  padding-bottom:100px;
+  min-height:300px;
+  margin-bottom:55px;
 }
-.culture-stack-slot{
+.art-culture-head .eyebrow{margin:0 0 16px;color:#88827d}
+.art-culture-head h3{
+  margin:0;
+  max-width:850px;
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:clamp(58px,8vw,120px);
+  line-height:.76;
+  letter-spacing:-.06em;
+  font-weight:500;
+  color:#ece4dc;
+}
+.art-culture-head>p{
+  position:absolute;
+  right:0;
+  bottom:6px;
+  width:min(390px,35%);
+  margin:0;
+  font-size:11px;
+  line-height:1.7;
+  color:#918b85;
+}
+.art-stack{padding-bottom:95px}
+.art-stack-slot{
+  position:sticky;
+  top:calc(5.5rem + var(--i)*28px);
+  z-index:calc(20 + var(--i));
   height:88vh;
   min-height:680px;
   display:flex;
-  align-items:flex-start;
   justify-content:center;
-  position:sticky;
-  top:calc(5.3rem + var(--i)*28px);
-  z-index:calc(20 + var(--i));
-  transform-origin:center top;
+  align-items:flex-start;
   margin-bottom:38px;
 }
-.culture-stack-card{
+.art-stack-card{
   position:relative;
   width:100%;
-  height:min(76vh,690px);
-  min-height:590px;
+  height:min(76vh,700px);
+  min-height:600px;
   overflow:hidden;
-  border-radius:40px;
-  border:2px solid rgba(226,235,242,.68);
-  background:#131416;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 34px 90px rgba(0,0,0,.58);
+  border-radius:38px;
+  border:2px solid rgba(225,234,241,.68);
+  background:#111214;
+  box-shadow:0 34px 90px rgba(0,0,0,.58),inset 0 1px 0 rgba(255,255,255,.24);
   transform-origin:center top;
   will-change:transform;
 }
-.culture-stack-card img{
+.art-stack-card img{
   width:100%;
   height:100%;
   object-fit:cover;
-  filter:saturate(.88) contrast(1.03);
+  filter:saturate(.90) contrast(1.03);
 }
-.culture-stack-overlay{
+.art-stack-card::after{
+  content:"";
   position:absolute;
   inset:0;
-  background:
-    linear-gradient(180deg,rgba(5,5,6,.04) 20%,rgba(5,5,6,.18) 55%,rgba(5,5,6,.84) 100%),
-    linear-gradient(115deg,rgba(255,255,255,.10),transparent 26%);
-  pointer-events:none;
+  background:linear-gradient(180deg,transparent 38%,rgba(6,7,8,.12) 57%,rgba(6,7,8,.87));
 }
-.culture-stack-meta{
+.art-stack-caption{
   position:absolute;
   z-index:3;
   left:26px;
   right:26px;
   bottom:24px;
-  display:flex;
-  align-items:flex-end;
-  gap:24px;
   padding:18px 20px;
-  border-radius:24px;
+  border-radius:23px;
   background:linear-gradient(135deg,rgba(255,255,255,.11),rgba(255,255,255,.025));
-  border:1px solid rgba(255,255,255,.19);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.22);
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.21);
   backdrop-filter:blur(22px) saturate(155%);
   -webkit-backdrop-filter:blur(22px) saturate(155%);
 }
-.culture-stack-number{
-  font-family:"Cormorant Garamond",Georgia,serif;
-  font-size:52px;
-  line-height:.78;
-  letter-spacing:-.05em;
-  color:#eee6df;
-}
-.culture-stack-meta small{
+.art-stack-caption span{
   display:block;
-  margin-bottom:6px;
-  color:#a59e97;
-  font-size:8px;
-  letter-spacing:.15em;
+  margin-bottom:7px;
+  font-size:7px;
+  letter-spacing:.17em;
   text-transform:uppercase;
+  color:#a49d96;
 }
-.culture-stack-meta h4{
+.art-stack-caption h4{
   margin:0;
   font-family:"Cormorant Garamond",Georgia,serif;
-  font-size:clamp(28px,3.2vw,44px);
-  line-height:.92;
+  font-size:clamp(30px,3.6vw,50px);
+  line-height:.9;
   font-weight:500;
-  letter-spacing:-.035em;
+  letter-spacing:-.04em;
   color:#fff;
 }
 
-@media(max-width:980px){
-  .story-sticky{grid-template-columns:minmax(270px,.86fr) 1.3fr;gap:24px}
-  .story-copy-rail{padding-top:78px}
-  .story-copy-head h3{font-size:44px}
-  .story-step-copy>p:not(.story-step-no){font-size:11px}
-  .story-visual-field{min-height:520px;height:70vh}
-  .culture-stack-head{grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:900px){
+  .art-work-intro{width:calc(100% - 40px);grid-template-columns:1fr 1fr}
+  .art-copy{width:min(340px,36vw)}
+  .art-copy h3{font-size:42px}
+  .art-copy p{font-size:10px}
+  .art-photo figcaption{font-size:5px}
 }
-@media(max-width:700px){
-  .work-scroll{padding:90px 14px 90px}
-  .work-head-scroll{display:block;margin-bottom:45px}
-  .work-head-scroll>p{margin-top:24px}
-  .story-chapter{
-    height:auto!important;
-    min-height:0;
-    padding:50px 0 64px;
+@media(max-width:640px){
+  .art-work{padding:90px 0 90px;border-radius:34px 34px 0 0;margin-top:-34px}
+  .art-work-intro{width:calc(100% - 28px);display:block;margin-bottom:50px}
+  .art-work-intro .eyebrow{margin:0 0 16px}
+  .art-work-intro h2{font-size:22vw}
+  .art-work-intro-copy{margin-top:24px;font-size:12px}
+  .art-story{height:auto!important;min-height:0;padding:60px 14px;border-top:1px solid rgba(255,255,255,.10)}
+  .art-stage{position:relative;top:auto;height:auto;min-height:0;overflow:visible}
+  .art-story-mark{position:relative;left:auto;top:auto;margin-bottom:28px}
+  .art-story-title{display:none}
+  .art-scene{position:relative;inset:auto;margin-bottom:70px}
+  .art-copy,.art-copy-a,.art-copy-b,.art-copy-bottom-left,.art-copy-top-right,.art-copy-top-left,.art-copy-bottom-right{
+    position:relative;left:auto;right:auto;top:auto;bottom:auto;width:100%;text-align:left!important;
+    opacity:1!important;transform:none!important;filter:none!important;margin-bottom:22px;
   }
-  .story-sticky{
-    position:relative;
-    top:auto;
-    height:auto;
-    min-height:0;
-    display:block;
-    overflow:visible;
+  .art-copy-top-right .art-meta-line,.art-copy-bottom-right .art-meta-line{justify-content:flex-start}
+  .art-copy h3{font-size:46px}
+  .art-copy p{font-size:11px}
+  .art-location{position:relative;left:auto;top:auto;transform:none;font-size:22vw;margin-bottom:-15px;color:rgba(238,231,223,.08)}
+  .art-photo{
+    position:relative!important;left:auto!important;top:auto!important;width:100%!important;height:330px!important;
+    opacity:1!important;transform:none!important;filter:none!important;margin:0 0 12px;
   }
-  .story-copy-rail{padding:0}
-  .story-copy-head h3{font-size:48px}
-  .story-step-stack,.story-step-stack-tall{
-    min-height:0;
-    margin-top:24px;
-  }
-  .story-step-copy{
-    position:relative;
-    inset:auto;
-    opacity:1!important;
-    transform:none!important;
-    filter:none!important;
-    pointer-events:auto;
-    padding:0 0 28px;
-    margin-bottom:28px;
-    border-bottom:1px solid rgba(255,255,255,.10);
-  }
-  .story-explore{margin:0 0 28px}
-  .story-visual-field{
-    height:auto;
-    min-height:0;
-    display:grid;
-    gap:26px;
-  }
-  .story-step-visual{
-    position:relative;
-    inset:auto;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-  }
-  .story-media{
-    position:relative;
-    left:auto;top:auto;width:auto;height:230px;
-    opacity:1!important;
-    transform:none!important;
-    filter:none!important;
-    border-radius:19px;
-  }
-  .story-media:first-child{grid-column:1/-1;height:330px}
-  .story-media-poster:first-child{height:390px}
-  .story-media figcaption{font-size:6px}
-  .culture-stack-section{padding-top:80px;margin-top:30px}
-  .culture-stack-head{display:block;margin-bottom:35px}
-  .culture-stack-head>p{margin-top:24px;justify-self:auto}
-  .culture-stack-head h3{font-size:18vw}
-  .culture-stack{padding-bottom:10px}
-  .culture-stack-slot{
-    position:relative!important;
-    top:auto!important;
-    height:auto;
-    min-height:0;
-    margin-bottom:18px;
-  }
-  .culture-stack-card{
-    height:70vh;
-    min-height:480px;
-    border-radius:28px;
-    transform:none!important;
-  }
-  .culture-stack-meta{left:14px;right:14px;bottom:14px;padding:15px;border-radius:20px}
-  .culture-stack-number{font-size:42px}
+  .art-photo-b{width:72%!important;margin-left:auto}
+  .art-photo-poster{height:430px!important;width:72%!important}
+  .art-note{position:relative;right:auto;top:auto;width:100%;opacity:1!important;transform:none!important;filter:none!important;margin:20px 0}
+  .art-explore{position:relative;right:auto;bottom:auto;margin-top:5px}
+  .art-culture-stack{width:calc(100% - 28px);padding-top:80px}
+  .art-culture-head{min-height:0;margin-bottom:38px}
+  .art-culture-head h3{font-size:19vw}
+  .art-culture-head>p{position:relative;right:auto;bottom:auto;width:100%;margin-top:24px}
+  .art-stack{padding-bottom:0}
+  .art-stack-slot{position:relative!important;top:auto!important;height:auto;min-height:0;margin-bottom:18px}
+  .art-stack-card{height:70vh;min-height:480px;border-radius:28px;transform:none!important}
 }
 @media(prefers-reduced-motion:reduce){
-  .story-chapter{height:auto!important;padding:70px 0}
-  .story-sticky{position:relative;height:auto;min-height:0}
-  .story-step-copy{position:relative;opacity:1!important;transform:none!important;filter:none!important;margin-bottom:24px}
-  .story-visual-field{height:auto;min-height:0;display:grid;gap:20px}
-  .story-step-visual{position:relative;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-  .story-media{position:relative;left:auto;top:auto;width:auto;height:280px;opacity:1!important;transform:none!important;filter:none!important}
+  .art-story{height:auto!important;min-height:0;padding:70px 20px}
+  .art-stage{position:relative;height:auto;min-height:0;overflow:visible}
+  .art-scene{position:relative;margin-bottom:60px}
+  .art-copy,.art-photo,.art-note{opacity:1!important;transform:none!important;filter:none!important}
 }
 
 </style>
@@ -865,292 +850,236 @@ body.archive-ready .archive-headline p{opacity:1;transform:none}
     </div>
   </section>
 
-  <section class="work work-scroll" id="work">
-    <div class="work-head work-head-scroll">
-      <div>
-        <p class="eyebrow">Selected work · scroll to explore</p>
-        <h2>Selected<br>Work</h2>
-      </div>
-      <p>Three threads run through the work: seeing people beyond labels, showing up for communities, and learning how culture can move from display into participation. Each project unfolds as a short visual chapter; the full case study remains available through Explore.</p>
-    </div>
+  <section class="work art-work" id="work">
+    <header class="art-work-intro">
+      <p class="eyebrow">Selected Work · Scroll through the stories</p>
+      <h2>Selected<br>Work</h2>
+      <p class="art-work-intro-copy">Three threads run through the work: seeing people beyond labels, showing up for communities, and learning how culture can move from display into participation.</p>
+    </header>
 
-    <div class="story-sequence">
+    <div class="art-stories">
 
       <!-- 01 / FILM -->
-      <article class="story-chapter story-film" data-scroll-story style="--story-steps:2">
-        <div class="story-sticky">
-          <div class="story-copy-rail">
-            <div class="story-copy-head">
-              <span class="story-index">01</span>
-              <p class="story-kicker">Film & Storytelling · 2026</p>
-              <h3>The Window<br>Without a Horizon</h3>
-              <p class="story-role">Screenwriter</p>
+      <article class="art-story" data-art-story style="--steps:2;--accent:#7c3d52">
+        <div class="art-stage">
+          <div class="art-story-mark">01 / FILM & STORYTELLING</div>
+          <div class="art-story-title art-story-title-film" aria-hidden="true">THE WINDOW<br>WITHOUT A<br>HORIZON</div>
+
+          <section class="art-scene" data-art-scene="0">
+            <div class="art-copy art-copy-a">
+              <span class="art-scene-index">01.1</span>
+              <h3>People before<br>the diagnosis.</h3>
+              <p>I supported a half-day photography activity with 13 pediatric cancer patients. What stayed with me was the ordinary conversation between photographs; that experience later shaped how I approached the screenplay.</p>
+              <div class="art-meta-line"><span>Miraculous Moments</span><span>13 young participants</span><span>Photography & patient engagement</span></div>
             </div>
 
-            <div class="story-step-stack">
-              <section class="story-step-copy" data-step-copy="0">
-                <p class="story-step-no">01.1 / Where it began</p>
-                <h4>People before the diagnosis.</h4>
-                <p>Before writing the film, I supported a half-day photography activity with 13 pediatric cancer patients. The ordinary conversations between photographs became the reference point for how I later approached the screenplay.</p>
-                <div class="story-facts">
-                  <span><strong>13</strong> young participants</span>
-                  <span><strong>People first</strong> the lesson carried forward</span>
-                </div>
-              </section>
+            <figure class="art-photo art-photo-a" data-art-pop="0" style="--l:42%;--t:9%;--w:45%;--h:54%;--r:3deg;--depth:1.05">
+              <img src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments outdoor photography session">
+              <figcaption>Where the approach began · Miraculous Moments</figcaption>
+            </figure>
 
-              <section class="story-step-copy" data-step-copy="1">
-                <p class="story-step-no">01.2 / The film</p>
-                <h4>Keeping the child visible inside the story.</h4>
-                <p>As screenwriter, I focused on daily life, dreams, relationships, and care rather than making illness the whole identity of the characters.</p>
-                <div class="story-facts">
-                  <span><strong>1st</strong> Golden Frame Awards 2026</span>
-                  <span><strong>≈90</strong> competition entries</span>
-                  <span><strong>100+</strong> screening attendees</span>
-                </div>
-              </section>
+            <figure class="art-photo art-photo-b" data-art-pop="1" style="--l:71%;--t:57%;--w:23%;--h:28%;--r:-5deg;--depth:.88">
+              <img src="assets/miraculous-studio.jpg" alt="Miraculous Moments studio session">
+              <figcaption>Photography, conversation, everyday aspirations</figcaption>
+            </figure>
+
+            <div class="art-note art-note-right" data-art-pop="2">
+              <span>REFERENCE POINT</span>
+              <p>Not how to make illness dramatic, but how to keep the child visible.</p>
+            </div>
+          </section>
+
+          <section class="art-scene" data-art-scene="1">
+            <div class="art-copy art-copy-b">
+              <span class="art-scene-index">01.2</span>
+              <h3>The story<br>became a film.</h3>
+              <p>As screenwriter, I centered daily life, dreams, relationships, and care rather than using illness as the whole identity of the characters.</p>
+              <div class="art-meta-line"><span>Screenwriter · 2026</span><span>1st Prize · Golden Frame Awards</span><span>≈90 entries · 100+ screening attendees</span></div>
             </div>
 
-            <button class="glass glass-link story-explore" type="button" data-open-project="stories">Explore full project <span class="arrow">↗</span></button>
-          </div>
+            <figure class="art-photo art-photo-poster" data-art-pop="0" style="--l:9%;--t:18%;--w:24%;--h:61%;--r:-4deg;--depth:.96">
+              <img src="assets/film-poster.jpg" alt="The Window Without a Horizon film poster">
+              <figcaption>Film poster · Screenwriter</figcaption>
+            </figure>
 
-          <div class="story-visual-field" aria-label="Film project photographs">
-            <div class="story-step-visual" data-story-step="0">
-              <figure class="story-media" data-pop="0" style="--x:8%;--y:8%;--w:58%;--h:57%;--rot:-4deg">
-                <img src="assets/miraculous-outdoor.jpg" alt="Miraculous Moments outdoor photography session">
-                <figcaption>Miraculous Moments · where the approach began</figcaption>
-              </figure>
-              <figure class="story-media story-media-small" data-pop="1" style="--x:61%;--y:48%;--w:34%;--h:37%;--rot:5deg">
-                <img src="assets/miraculous-studio.jpg" alt="Photography activity with pediatric cancer patients">
-                <figcaption>Photography · conversation · everyday aspirations</figcaption>
-              </figure>
-            </div>
+            <figure class="art-photo" data-art-pop="1" style="--l:43%;--t:10%;--w:48%;--h:43%;--r:2deg;--depth:1.08">
+              <img src="assets/screening-emotion.jpg" alt="Audience watching The Window Without a Horizon">
+              <figcaption>Public screening · audience response</figcaption>
+            </figure>
 
-            <div class="story-step-visual" data-story-step="1">
-              <figure class="story-media story-media-poster" data-pop="0" style="--x:4%;--y:10%;--w:30%;--h:72%;--rot:-4deg">
-                <img src="assets/film-poster.jpg" alt="The Window Without a Horizon film poster">
-                <figcaption>Screenwriter · The Window Without a Horizon</figcaption>
-              </figure>
-              <figure class="story-media" data-pop="1" style="--x:31%;--y:7%;--w:61%;--h:48%;--rot:2deg">
-                <img src="assets/screening-emotion.jpg" alt="Audience watching The Window Without a Horizon">
-                <figcaption>Public screening · audience response</figcaption>
-              </figure>
-              <figure class="story-media story-media-small" data-pop="2" style="--x:55%;--y:56%;--w:38%;--h:34%;--rot:-3deg">
-                <img src="assets/award-team.jpg" alt="Film team at the Golden Frame Awards">
-                <figcaption>First Prize · Golden Frame Awards 2026</figcaption>
-              </figure>
-            </div>
-          </div>
+            <figure class="art-photo art-photo-b" data-art-pop="2" style="--l:58%;--t:58%;--w:32%;--h:28%;--r:-3deg;--depth:.9">
+              <img src="assets/award-team.jpg" alt="Film team at the Golden Frame Awards">
+              <figcaption>First Prize · Golden Frame Awards 2026</figcaption>
+            </figure>
+          </section>
+
+          <button class="glass glass-link art-explore" type="button" data-open-project="stories">Explore project <span class="arrow">↗</span></button>
         </div>
       </article>
 
-      <!-- 02 / COMMUNITY -->
-      <article class="story-chapter story-community" data-scroll-story style="--story-steps:3">
-        <div class="story-sticky">
-          <div class="story-copy-rail">
-            <div class="story-copy-head">
-              <span class="story-index">02</span>
-              <p class="story-kicker">Community · 2024–2026</p>
-              <h3>Flying Heart</h3>
-              <p class="story-role">Community outreach · three locations</p>
+      <!-- 02 / FLYING HEART -->
+      <article class="art-story art-story-community" data-art-story style="--steps:3;--accent:#315a42">
+        <div class="art-stage">
+          <div class="art-story-mark">02 / COMMUNITY</div>
+          <div class="art-story-title art-story-title-community" aria-hidden="true">FLYING<br>HEART</div>
+
+          <section class="art-scene" data-art-scene="0">
+            <div class="art-location" aria-hidden="true">DAK LAK</div>
+
+            <div class="art-copy art-copy-bottom-left">
+              <span class="art-scene-index">02.1 / DAK LAK</span>
+              <h3>Learning support<br>for children.</h3>
+              <p>Stationery, books, Mid-Autumn gifts, and activities for more than 100 ethnic minority children.</p>
+              <div class="art-meta-line"><span>100+ children</span><span>Education kits</span><span>Community activities</span></div>
             </div>
 
-            <div class="story-step-stack story-step-stack-tall">
-              <section class="story-step-copy" data-step-copy="0">
-                <p class="story-step-no">02.1 / Dak Lak</p>
-                <h4>Learning support for children.</h4>
-                <p>Our team brought stationery, books, Mid-Autumn gifts, and activities to more than 100 ethnic minority children.</p>
-                <div class="story-facts">
-                  <span><strong>100+</strong> children reached</span>
-                  <span><strong>Learning</strong> stationery & books</span>
-                </div>
-              </section>
+            <figure class="art-photo" data-art-pop="0" style="--l:32%;--t:8%;--w:42%;--h:51%;--r:-3deg;--depth:1.04">
+              <img src="assets/flying-daklak-4.jpg" alt="Flying Heart in Dak Lak">
+              <figcaption>Dak Lak · main activity</figcaption>
+            </figure>
+            <figure class="art-photo" data-art-pop="1" style="--l:68%;--t:37%;--w:27%;--h:33%;--r:5deg;--depth:.9">
+              <img src="assets/flying-daklak-1.jpg" alt="Children joining Flying Heart activities in Dak Lak">
+              <figcaption>Activities with children</figcaption>
+            </figure>
+            <figure class="art-photo" data-art-pop="2" style="--l:47%;--t:61%;--w:31%;--h:26%;--r:2deg;--depth:.84">
+              <img src="assets/flying-daklak-6.jpg" alt="Children at the Flying Heart Dak Lak program">
+              <figcaption>100+ children reached</figcaption>
+            </figure>
+          </section>
 
-              <section class="story-step-copy" data-step-copy="1">
-                <p class="story-step-no">02.2 / Dong Nai</p>
-                <h4>Practical family support.</h4>
-                <p>We supported more than 30 low-income households with essential supplies, with particular attention to children during the Mid-Autumn period.</p>
-                <div class="story-facts">
-                  <span><strong>30+</strong> households supported</span>
-                  <span><strong>Essentials</strong> practical family support</span>
-                </div>
-              </section>
+          <section class="art-scene" data-art-scene="1">
+            <div class="art-location" aria-hidden="true">DONG NAI</div>
 
-              <section class="story-step-copy" data-step-copy="2">
-                <p class="story-step-no">02.3 / Dak Nong</p>
-                <h4>Plan, coordinate, then adapt on site.</h4>
-                <p>For a Mid-Autumn program serving more than 1,000 students, I planned game stations and the visual setup, then supported crowd coordination, tug-of-war, gift preparation, and food distribution. A last-minute venue change also required an on-site backdrop fix.</p>
-                <div class="story-facts">
-                  <span><strong>1,000+</strong> students joined</span>
-                  <span><strong>Plan + adapt</strong> games · visuals · crowd flow</span>
-                </div>
-              </section>
+            <div class="art-copy art-copy-top-right">
+              <span class="art-scene-index">02.2 / DONG NAI</span>
+              <h3>Practical support<br>for families.</h3>
+              <p>Essential supplies for more than 30 low-income households, with particular attention to children during the Mid-Autumn period.</p>
+              <div class="art-meta-line"><span>30+ households</span><span>Essential supplies</span><span>Family support</span></div>
             </div>
 
-            <button class="glass glass-link story-explore" type="button" data-open-project="community">Explore all three locations <span class="arrow">↗</span></button>
-          </div>
+            <figure class="art-photo" data-art-pop="0" style="--l:7%;--t:10%;--w:46%;--h:47%;--r:4deg;--depth:1.05">
+              <img src="assets/flying-dongnai-1.jpg" alt="Flying Heart in Dong Nai">
+              <figcaption>Dong Nai · household outreach</figcaption>
+            </figure>
+            <figure class="art-photo" data-art-pop="1" style="--l:13%;--t:56%;--w:30%;--h:29%;--r:-5deg;--depth:.88">
+              <img src="assets/flying-dongnai-2.jpg" alt="Essential supplies in Dong Nai">
+              <figcaption>Essential supplies</figcaption>
+            </figure>
+            <figure class="art-photo" data-art-pop="2" style="--l:48%;--t:48%;--w:30%;--h:31%;--r:2deg;--depth:.86">
+              <img src="assets/flying-dongnai-3.jpg" alt="Community outreach in Dong Nai">
+              <figcaption>30+ households supported</figcaption>
+            </figure>
+          </section>
 
-          <div class="story-visual-field" aria-label="Flying Heart community photographs">
-            <div class="story-step-visual" data-story-step="0">
-              <figure class="story-media" data-pop="0" style="--x:5%;--y:8%;--w:57%;--h:54%;--rot:-3deg">
-                <img src="assets/flying-daklak-4.jpg" alt="Flying Heart program in Dak Lak">
-                <figcaption>Dak Lak · main activity</figcaption>
-              </figure>
-              <figure class="story-media story-media-small" data-pop="1" style="--x:61%;--y:8%;--w:33%;--h:35%;--rot:4deg">
-                <img src="assets/flying-daklak-1.jpg" alt="Community activity in Dak Lak">
-                <figcaption>Activities with children</figcaption>
-              </figure>
-              <figure class="story-media story-media-small" data-pop="2" style="--x:55%;--y:50%;--w:39%;--h:39%;--rot:-2deg">
-                <img src="assets/flying-daklak-6.jpg" alt="Children at the Dak Lak program">
-                <figcaption>100+ children reached</figcaption>
-              </figure>
+          <section class="art-scene" data-art-scene="2">
+            <div class="art-location art-location-wide" aria-hidden="true">DAK NONG</div>
+
+            <div class="art-copy art-copy-bottom-left">
+              <span class="art-scene-index">02.3 / DAK NONG</span>
+              <h3>Plan, coordinate,<br>then adapt.</h3>
+              <p>For a Mid-Autumn program serving 1,000+ students, I planned game stations and visual setup, then supported crowd coordination, tug-of-war, gift preparation, and food distribution. A last-minute venue change also required an on-site backdrop fix.</p>
+              <div class="art-meta-line"><span>1,000+ students</span><span>Games & visual setup</span><span>Crowd flow · distribution</span></div>
             </div>
 
-            <div class="story-step-visual" data-story-step="1">
-              <figure class="story-media" data-pop="0" style="--x:7%;--y:11%;--w:58%;--h:53%;--rot:3deg">
-                <img src="assets/flying-dongnai-1.jpg" alt="Flying Heart in Dong Nai">
-                <figcaption>Dong Nai · household outreach</figcaption>
-              </figure>
-              <figure class="story-media story-media-small" data-pop="1" style="--x:61%;--y:8%;--w:34%;--h:38%;--rot:-5deg">
-                <img src="assets/flying-dongnai-2.jpg" alt="Essential supplies in Dong Nai">
-                <figcaption>Essential supplies</figcaption>
-              </figure>
-              <figure class="story-media story-media-small" data-pop="2" style="--x:54%;--y:53%;--w:40%;--h:34%;--rot:3deg">
-                <img src="assets/flying-dongnai-3.jpg" alt="Community outreach in Dong Nai">
-                <figcaption>30+ households supported</figcaption>
-              </figure>
-            </div>
+            <figure class="art-photo" data-art-pop="0" style="--l:35%;--t:8%;--w:49%;--h:50%;--r:-2deg;--depth:1.08">
+              <img src="assets/flying-daknong-4.jpg" alt="Students at the Dak Nong program">
+              <figcaption>Dak Nong · 1,000+ students</figcaption>
+            </figure>
+            <figure class="art-photo" data-art-pop="1" style="--l:75%;--t:49%;--w:20%;--h:32%;--r:5deg;--depth:.9">
+              <img src="assets/flying-daknong-6.jpg" alt="Fixing the event backdrop after a venue change">
+              <figcaption>On-site visual correction</figcaption>
+            </figure>
+            <figure class="art-photo" data-art-pop="2" style="--l:45%;--t:61%;--w:29%;--h:25%;--r:-4deg;--depth:.84">
+              <img src="assets/flying-daknong-8.jpg" alt="Preparing food for students">
+              <figcaption>Food & gift distribution</figcaption>
+            </figure>
+          </section>
 
-            <div class="story-step-visual" data-story-step="2">
-              <figure class="story-media" data-pop="0" style="--x:3%;--y:8%;--w:62%;--h:55%;--rot:-2deg">
-                <img src="assets/flying-daknong-4.jpg" alt="Students at the Dak Nong program">
-                <figcaption>Dak Nong · 1,000+ students</figcaption>
-              </figure>
-              <figure class="story-media story-media-small" data-pop="1" style="--x:63%;--y:12%;--w:32%;--h:36%;--rot:4deg">
-                <img src="assets/flying-daknong-6.jpg" alt="Fixing the event backdrop after a venue change">
-                <figcaption>On-site visual correction</figcaption>
-              </figure>
-              <figure class="story-media story-media-small" data-pop="2" style="--x:52%;--y:54%;--w:43%;--h:34%;--rot:-4deg">
-                <img src="assets/flying-daknong-8.jpg" alt="Preparing food for students">
-                <figcaption>Food & gift distribution</figcaption>
-              </figure>
-            </div>
-          </div>
+          <button class="glass glass-link art-explore" type="button" data-open-project="community">Explore all three locations <span class="arrow">↗</span></button>
         </div>
       </article>
 
       <!-- 03 / CULTURAL COMMUNICATION -->
-      <article class="story-chapter story-cultural" data-scroll-story style="--story-steps:2">
-        <div class="story-sticky">
-          <div class="story-copy-rail">
-            <div class="story-copy-head">
-              <span class="story-index">03</span>
-              <p class="story-kicker">Cultural Communication · 2026</p>
-              <h3>From display<br>to participation</h3>
-              <p class="story-role">Heritage · context · public participation</p>
+      <article class="art-story art-story-culture" data-art-story style="--steps:2;--accent:#77384d">
+        <div class="art-stage">
+          <div class="art-story-mark">03 / CULTURAL COMMUNICATION</div>
+          <div class="art-story-title art-story-title-culture" aria-hidden="true">FROM DISPLAY<br>TO PARTICIPATION</div>
+
+          <section class="art-scene" data-art-scene="0">
+            <div class="art-copy art-copy-top-left">
+              <span class="art-scene-index">03.1 / CHẠM VIỆT PHỤC</span>
+              <h3>Give appreciation<br>more context.</h3>
+              <p>As Sub Lead, I helped develop the concept and creative execution for a youth heritage campaign combining digital communication with an offline experience where visitors could ask questions and interact with cultural materials.</p>
+              <div class="art-meta-line"><span>4.8K+ views</span><span>1.2K reach</span><span>90+ direct visitors</span></div>
             </div>
 
-            <div class="story-step-stack story-step-stack-tall">
-              <section class="story-step-copy" data-step-copy="0">
-                <p class="story-step-no">03.1 / Chạm Việt Phục</p>
-                <h4>Give appreciation more context.</h4>
-                <p>As Sub Lead, I helped develop the concept and creative execution for a youth heritage campaign combining digital communication with an offline experience where visitors could ask questions and interact with cultural materials.</p>
-                <div class="story-facts">
-                  <span><strong>4.8K+</strong> views</span>
-                  <span><strong>1.2K</strong> reach</span>
-                  <span><strong>90+</strong> direct visitors</span>
-                </div>
-              </section>
+            <figure class="art-photo" data-art-pop="0" style="--l:46%;--t:8%;--w:43%;--h:50%;--r:3deg;--depth:1.04">
+              <img src="assets/cham-1.jpg" alt="Chạm Việt Phục activity">
+              <figcaption>Chạm Việt Phục · offline experience</figcaption>
+            </figure>
+            <figure class="art-photo" data-art-pop="1" style="--l:62%;--t:53%;--w:31%;--h:32%;--r:-5deg;--depth:.87">
+              <img src="assets/cham-3.jpg" alt="Traditional attire at Chạm Việt Phục">
+              <figcaption>Traditional attire · context</figcaption>
+            </figure>
+            <figure class="art-photo" data-art-pop="2" style="--l:35%;--t:58%;--w:28%;--h:27%;--r:4deg;--depth:.84">
+              <img src="assets/cham-4.jpg" alt="Visitors at Chạm Việt Phục">
+              <figcaption>90+ direct visitors</figcaption>
+            </figure>
+          </section>
 
-              <section class="story-step-copy" data-step-copy="1">
-                <p class="story-step-no">03.2 / Tiên Thường Tuần Du</p>
-                <h4>Heritage in public space.</h4>
-                <p>Developed with Saigon Zoo and the Ho Chi Minh City Museum of History, the parade brought more than 300 participants into a shared heritage experience. I supported participant logistics, crowd flow, and on-site operations.</p>
-                <div class="story-facts">
-                  <span><strong>300+</strong> participants</span>
-                  <span><strong>Public space</strong> heritage as lived experience</span>
-                </div>
-              </section>
+          <section class="art-scene" data-art-scene="1">
+            <div class="art-copy art-copy-bottom-right">
+              <span class="art-scene-index">03.2 / TIÊN THƯỜNG TUẦN DU</span>
+              <h3>Heritage in<br>public space.</h3>
+              <p>Developed with Saigon Zoo and the Ho Chi Minh City Museum of History, the parade brought more than 300 participants into a shared heritage experience. I supported participant logistics, crowd flow, and on-site operations.</p>
+              <div class="art-meta-line"><span>300+ participants</span><span>Public heritage experience</span><span>Logistics & crowd flow</span></div>
             </div>
 
-            <button class="glass glass-link story-explore" type="button" data-open-project="culture">Explore cultural work <span class="arrow">↗</span></button>
-          </div>
+            <figure class="art-photo" data-art-pop="0" style="--l:6%;--t:9%;--w:49%;--h:49%;--r:-3deg;--depth:1.05">
+              <img src="assets/tien-2.jpg" alt="Tiên Thường Tuần Du heritage parade">
+              <figcaption>Tiên Thường Tuần Du · public heritage parade</figcaption>
+            </figure>
+            <figure class="art-photo" data-art-pop="1" style="--l:12%;--t:57%;--w:30%;--h:29%;--r:5deg;--depth:.87">
+              <img src="assets/tien-1.jpg" alt="Participants at Tiên Thường Tuần Du">
+              <figcaption>300+ participants</figcaption>
+            </figure>
+            <figure class="art-photo" data-art-pop="2" style="--l:46%;--t:48%;--w:30%;--h:32%;--r:-2deg;--depth:.89">
+              <img src="assets/tien-3.jpg" alt="Traditional attire at Tiên Thường Tuần Du">
+              <figcaption>Culture encountered together</figcaption>
+            </figure>
+          </section>
 
-          <div class="story-visual-field" aria-label="Cultural communication photographs">
-            <div class="story-step-visual" data-story-step="0">
-              <figure class="story-media" data-pop="0" style="--x:5%;--y:8%;--w:58%;--h:57%;--rot:-3deg">
-                <img src="assets/cham-1.jpg" alt="Chạm Việt Phục activity">
-                <figcaption>Chạm Việt Phục · offline experience</figcaption>
-              </figure>
-              <figure class="story-media story-media-small" data-pop="1" style="--x:62%;--y:9%;--w:33%;--h:36%;--rot:4deg">
-                <img src="assets/cham-3.jpg" alt="Traditional attire at Chạm Việt Phục">
-                <figcaption>Traditional attire · context</figcaption>
-              </figure>
-              <figure class="story-media story-media-small" data-pop="2" style="--x:55%;--y:52%;--w:40%;--h:36%;--rot:-3deg">
-                <img src="assets/cham-4.jpg" alt="Visitors at Chạm Việt Phục">
-                <figcaption>90+ direct visitors</figcaption>
-              </figure>
-            </div>
-
-            <div class="story-step-visual" data-story-step="1">
-              <figure class="story-media" data-pop="0" style="--x:4%;--y:8%;--w:62%;--h:56%;--rot:2deg">
-                <img src="assets/tien-2.jpg" alt="Tiên Thường Tuần Du heritage parade">
-                <figcaption>Tiên Thường Tuần Du · public heritage parade</figcaption>
-              </figure>
-              <figure class="story-media story-media-small" data-pop="1" style="--x:63%;--y:9%;--w:32%;--h:38%;--rot:-4deg">
-                <img src="assets/tien-1.jpg" alt="Participants at Tiên Thường Tuần Du">
-                <figcaption>300+ participants</figcaption>
-              </figure>
-              <figure class="story-media story-media-small" data-pop="2" style="--x:54%;--y:54%;--w:41%;--h:34%;--rot:4deg">
-                <img src="assets/tien-3.jpg" alt="Traditional attire at Tiên Thường Tuần Du">
-                <figcaption>Culture encountered together</figcaption>
-              </figure>
-            </div>
-          </div>
+          <button class="glass glass-link art-explore" type="button" data-open-project="culture">Explore cultural work <span class="arrow">↗</span></button>
         </div>
       </article>
     </div>
 
-    <!-- The old sticky-stack language now belongs to smaller cultural experiences. -->
-    <section class="culture-stack-section" aria-label="Culture beyond the projects">
-      <div class="culture-stack-head">
-        <div>
-          <p class="eyebrow">Additional participation</p>
-          <h3>Culture, beyond<br>the projects.</h3>
-        </div>
-        <p>Smaller experiences stay smaller here. Instead of turning every activity into a case study, these cards show the breadth of learning through participation.</p>
+    <section class="art-culture-stack" aria-label="Culture beyond the projects">
+      <div class="art-culture-head">
+        <p class="eyebrow">Additional participation</p>
+        <h3>Culture, beyond<br>the projects.</h3>
+        <p>Smaller experiences stay smaller here: learning by participating rather than turning every activity into another case study.</p>
       </div>
 
-      <div class="culture-stack">
-        <div class="culture-stack-slot" style="--i:0;--target-scale:.94" data-culture-stack-slot>
-          <article class="culture-stack-card">
+      <div class="art-stack">
+        <div class="art-stack-slot" data-art-stack style="--i:0;--target:.94">
+          <article class="art-stack-card">
             <img src="assets/additional-taofest-2.jpg" alt="Tao Fest">
-            <div class="culture-stack-overlay"></div>
-            <div class="culture-stack-meta">
-              <span class="culture-stack-number">01</span>
-              <div><small>Tao Fest</small><h4>Vietnamese Attire Performer</h4></div>
-            </div>
+            <div class="art-stack-caption"><span>01 / TAO FEST</span><h4>Vietnamese Attire Performer</h4></div>
           </article>
         </div>
 
-        <div class="culture-stack-slot" style="--i:1;--target-scale:.97" data-culture-stack-slot>
-          <article class="culture-stack-card">
+        <div class="art-stack-slot" data-art-stack style="--i:1;--target:.97">
+          <article class="art-stack-card">
             <img src="assets/additional-tocxanh-1.jpg" alt="Tóc Xanh Vạt Áo">
-            <div class="culture-stack-overlay"></div>
-            <div class="culture-stack-meta">
-              <span class="culture-stack-number">02</span>
-              <div><small>Tóc Xanh Vạt Áo</small><h4>Traditional Martial Arts Performer</h4></div>
-            </div>
+            <div class="art-stack-caption"><span>02 / TÓC XANH VẠT ÁO</span><h4>Traditional Martial Arts Performer</h4></div>
           </article>
         </div>
 
-        <div class="culture-stack-slot" style="--i:2;--target-scale:1" data-culture-stack-slot>
-          <article class="culture-stack-card">
+        <div class="art-stack-slot" data-art-stack style="--i:2;--target:1">
+          <article class="art-stack-card">
             <img src="assets/additional-bachphuc-2.jpg" alt="Bách Phục Sắc Việt">
-            <div class="culture-stack-overlay"></div>
-            <div class="culture-stack-meta">
-              <span class="culture-stack-number">03</span>
-              <div><small>Bách Phục Sắc Việt</small><h4>Vietnamese Traditional Attire Performer</h4></div>
-            </div>
+            <div class="art-stack-caption"><span>03 / BÁCH PHỤC SẮC VIỆT</span><h4>Vietnamese Traditional Attire Performer</h4></div>
           </article>
         </div>
       </div>
@@ -1689,120 +1618,115 @@ body.archive-ready .archive-headline p{opacity:1;transform:none}
 
 <script>
 (() => {
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const mobile = () => innerWidth <= 700;
-  const clamp = (n,a=0,b=1) => Math.max(a,Math.min(b,n));
-  const smooth = t => {
-    t = clamp(t);
-    return t*t*(3-2*t);
-  };
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mobile = () => innerWidth <= 640;
+  const clamp = (n,a=0,b=1)=>Math.max(a,Math.min(b,n));
+  const smooth = t => { t=clamp(t); return t*t*(3-2*t); };
 
-  const stories = [...document.querySelectorAll('[data-scroll-story]')];
+  const stories=[...document.querySelectorAll('[data-art-story]')];
 
   function updateStories(){
-    if(reduceMotion || mobile()){
+    if(reduce || mobile()){
       stories.forEach(story=>{
-        story.querySelectorAll('[data-step-copy]').forEach(el=>el.classList.add('is-active'));
-        story.querySelectorAll('.story-media').forEach(el=>{
-          el.style.setProperty('--pop-opacity','1');
-          el.style.setProperty('--pop-y','0px');
-          el.style.setProperty('--pop-scale','1');
-          el.style.setProperty('--pop-blur','0px');
+        story.querySelectorAll('.art-copy,.art-photo,.art-note').forEach(el=>{
+          el.style.opacity='1';
+          el.style.transform='none';
+          el.style.filter='none';
         });
       });
       return;
     }
 
     stories.forEach(story=>{
-      const rect = story.getBoundingClientRect();
-      const travel = Math.max(1, story.offsetHeight - innerHeight);
-      const p = clamp(-rect.top / travel);
-      const stepEls = [...story.querySelectorAll('[data-story-step]')];
-      const copyEls = [...story.querySelectorAll('[data-step-copy]')];
-      const count = Math.max(1, stepEls.length);
+      const rect=story.getBoundingClientRect();
+      const travel=Math.max(1,story.offsetHeight-innerHeight);
+      const p=clamp(-rect.top/travel);
+      const scenes=[...story.querySelectorAll('[data-art-scene]')];
+      const count=Math.max(1,scenes.length);
 
-      let active = Math.min(count-1, Math.floor(clamp(p,0,.999999) * count));
-      if (p >= .999) active = count-1;
-      copyEls.forEach((el,i)=>el.classList.toggle('is-active',i===active));
+      scenes.forEach((scene,i)=>{
+        const phase=p*count-i;
+        const local=clamp(phase);
+        const inV=smooth(local/.20);
+        const outV=1-smooth((local-.78)/.18);
+        const sceneV=clamp(inV*outV);
 
-      stepEls.forEach((step,i)=>{
-        // Each project is split into equal scroll chapters.
-        const phase = p * count - i;
-        const local = clamp(phase);
-        const media = [...step.querySelectorAll('.story-media')];
+        const copy=scene.querySelector('.art-copy');
+        if(copy){
+          copy.style.opacity=sceneV.toFixed(3);
+          copy.style.transform=`translateY(${((1-inV)*34 + (1-outV)*-18).toFixed(1)}px)`;
+          copy.style.filter=`blur(${((1-sceneV)*7).toFixed(2)}px)`;
+        }
 
-        media.forEach((el,j)=>{
-          const enterStart = .03 + j*.11;
-          const enter = smooth((local-enterStart)/.22);
-          const exitStart = .80 + Math.min(j*.025,.07);
-          const exit = 1 - smooth((local-exitStart)/.16);
-          const visibility = clamp(enter * exit);
+        const note=scene.querySelector('.art-note');
+        if(note){
+          const nv=clamp(smooth((local-.16)/.25)*outV);
+          note.style.opacity=nv.toFixed(3);
+          note.style.transform=`translateY(${((1-nv)*25).toFixed(1)}px)`;
+          note.style.filter=`blur(${((1-nv)*6).toFixed(2)}px)`;
+        }
 
-          const lift = (1-enter)*68 + (1-exit)*-22;
-          const scale = .88 + enter*.12 - (1-exit)*.025;
-          const blur = (1-visibility)*6;
+        [...scene.querySelectorAll('[data-art-pop]')].forEach((photo,j)=>{
+          const start=.05+j*.11;
+          const enter=smooth((local-start)/.24);
+          const exit=1-smooth((local-(.80+j*.02))/.14);
+          const v=clamp(enter*exit);
+          const baseRot=parseFloat(getComputedStyle(photo).getPropertyValue('--r'))||0;
+          const y=(1-enter)*95 + (1-exit)*-28;
+          const scale=.76+enter*.24-(1-exit)*.03;
+          const rot=baseRot*(1.65-.65*enter);
 
-          el.style.setProperty('--pop-opacity',visibility.toFixed(3));
-          el.style.setProperty('--pop-y',`${lift.toFixed(1)}px`);
-          el.style.setProperty('--pop-scale',scale.toFixed(4));
-          el.style.setProperty('--pop-blur',`${blur.toFixed(2)}px`);
+          photo.style.opacity=v.toFixed(3);
+          photo.style.transform=`translate3d(0,${y.toFixed(1)}px,0) rotate(${rot.toFixed(2)}deg) scale(${scale.toFixed(4)})`;
+          photo.style.filter=`blur(${((1-v)*12).toFixed(2)}px) saturate(${(.86+v*.14).toFixed(3)})`;
         });
       });
     });
   }
 
-  // Culture stack inherits the old project's sticky-card behavior.
-  const slots = [...document.querySelectorAll('[data-culture-stack-slot]')];
-  let stackMetrics = [];
+  const stackSlots=[...document.querySelectorAll('[data-art-stack]')];
+  let stackMetrics=[];
 
   function measureStack(){
-    stackMetrics = slots.map(slot=>{
-      let y=0, el=slot;
-      while(el){ y += el.offsetTop || 0; el = el.offsetParent; }
+    stackMetrics=stackSlots.map(slot=>{
+      let y=0,el=slot;
+      while(el){y+=el.offsetTop||0;el=el.offsetParent}
       return {start:y,height:slot.offsetHeight||1};
     });
   }
-
-  function updateCultureStack(){
-    if(reduceMotion || mobile()){
-      slots.forEach(slot=>{
-        const card=slot.querySelector('.culture-stack-card');
+  function updateStack(){
+    if(reduce || mobile()){
+      stackSlots.forEach(slot=>{
+        const card=slot.querySelector('.art-stack-card');
         if(card) card.style.transform='';
       });
       return;
     }
-    const y = scrollY;
-    slots.forEach((slot,i)=>{
-      const card = slot.querySelector('.culture-stack-card');
-      if(!card) return;
-      const m = stackMetrics[i] || {start:0,height:1};
-      const progress = clamp((y-m.start)/Math.max(1,m.height));
-      const target = parseFloat(getComputedStyle(slot).getPropertyValue('--target-scale')) || 1;
-      const scale = 1 + (target-1)*progress;
-      card.style.transform = `scale(${scale})`;
+    stackSlots.forEach((slot,i)=>{
+      const card=slot.querySelector('.art-stack-card');
+      if(!card)return;
+      const m=stackMetrics[i]||{start:0,height:1};
+      const prog=clamp((scrollY-m.start)/Math.max(1,m.height));
+      const target=parseFloat(getComputedStyle(slot).getPropertyValue('--target'))||1;
+      const scale=1+(target-1)*prog;
+      card.style.transform=`scale(${scale})`;
     });
   }
 
-  let ticking = false;
-  function updateAll(){
+  let ticking=false;
+  function update(){
     updateStories();
-    updateCultureStack();
-    ticking = false;
+    updateStack();
+    ticking=false;
   }
   function requestUpdate(){
-    if(!ticking){
-      ticking = true;
-      requestAnimationFrame(updateAll);
-    }
+    if(!ticking){ticking=true;requestAnimationFrame(update)}
   }
 
   measureStack();
-  updateAll();
+  update();
   addEventListener('scroll',requestUpdate,{passive:true});
-  addEventListener('resize',()=>{
-    measureStack();
-    requestUpdate();
-  },{passive:true});
+  addEventListener('resize',()=>{measureStack();requestUpdate()},{passive:true});
 })();
 </script>
 
